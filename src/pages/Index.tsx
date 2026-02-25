@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import MarqueeSection from "@/components/MarqueeSection";
 import CategoriesSection from "@/components/CategoriesSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import OffersBanner from "@/components/OffersBanner";
@@ -30,6 +31,7 @@ const Index = () => {
           <Navbar />
           <main>
             <HeroSection />
+            <MarqueeSection />
             <CategoriesSection />
             <WhyChooseUs />
             <OffersBanner />

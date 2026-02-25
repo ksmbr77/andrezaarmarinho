@@ -5,19 +5,16 @@ import { Award, Truck, MessageCircle } from "lucide-react";
 const highlights = [
   {
     icon: Award,
-    number: "3x",
-    title: "Armarinho Destaque",
+    title: "3x Armarinho Destaque",
     desc: "Reconhecida como referência em qualidade e variedade pelo terceiro ano consecutivo.",
   },
   {
     icon: Truck,
-    number: "Brasil",
     title: "Entrega Nacional",
     desc: "Enviamos para todas as regiões do país com segurança e agilidade.",
   },
   {
     icon: MessageCircle,
-    number: "24h",
     title: "Atendimento Rápido",
     desc: "Resposta ágil via WhatsApp para tirar dúvidas e fechar pedidos.",
   },
@@ -29,9 +26,8 @@ const WhyChooseUs = () => {
 
   return (
     <section id="diferenciais" className="relative" ref={ref}>
-      {/* Gradient divider on top */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-      
+
       <div className="px-6 py-28 md:py-36 lg:py-44">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -49,28 +45,29 @@ const WhyChooseUs = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+          {/* Glass card list — stacked style */}
+          <div className="max-w-2xl mx-auto space-y-4">
             {highlights.map((h, i) => (
               <motion.div
                 key={h.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="text-center group"
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-start gap-5 bg-foreground/[0.03] backdrop-blur-sm border border-border/20 rounded-2xl px-7 py-6 hover:bg-foreground/[0.06] hover:border-primary/15 transition-all duration-500"
               >
-                <div className="w-14 h-14 mx-auto mb-6 rounded-2xl bg-primary/[0.06] border border-primary/10 flex items-center justify-center group-hover:bg-primary/10 transition-all duration-500">
-                  <h.icon size={22} className="text-primary" strokeWidth={1.5} />
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-primary/15 transition-colors duration-500">
+                  <h.icon size={20} className="text-primary" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-heading text-4xl md:text-5xl font-bold text-primary mb-3">{h.number}</h3>
-                <p className="font-medium text-base mb-3">{h.title}</p>
-                <p className="text-muted-foreground text-sm leading-relaxed max-w-[260px] mx-auto">{h.desc}</p>
+                <div>
+                  <h3 className="font-semibold text-base mb-1">{h.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Gradient divider on bottom */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
     </section>
   );
