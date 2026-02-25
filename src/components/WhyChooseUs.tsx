@@ -41,9 +41,9 @@ const WhyChooseUs = () => {
       <div className="px-6 py-24 md:py-32 lg:py-40">
         <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-center mb-16 md:mb-20"
           >
             <p className="text-[11px] tracking-[0.3em] uppercase text-primary mb-5">Diferenciais</p>
@@ -59,18 +59,14 @@ const WhyChooseUs = () => {
             {highlights.map((h, i) => (
               <motion.div
                 key={h.title}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ scale: 1.02, x: 8 }}
-                className="group flex items-start gap-5 bg-foreground/[0.04] backdrop-blur-sm border border-border/30 rounded-2xl px-7 py-6 hover:bg-primary/[0.06] hover:border-primary/25 transition-all duration-500 cursor-default"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-start gap-5 bg-foreground/[0.04] border border-border/30 rounded-2xl px-7 py-6 hover:bg-primary/[0.06] hover:border-primary/25 transition-all duration-300 cursor-default"
               >
-                <motion.div
-                  whileHover={{ rotate: 5 }}
-                  className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-500"
-                >
+                <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-primary/20 group-hover:border-primary/30 transition-colors duration-300">
                   <h.icon size={20} className="text-primary" strokeWidth={1.5} />
-                </motion.div>
+                </div>
                 <div>
                   <h3 className="font-semibold text-base mb-1.5 group-hover:text-primary transition-colors duration-300">{h.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
