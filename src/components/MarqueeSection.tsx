@@ -23,15 +23,15 @@ const MarqueeSection = () => {
         <motion.div
           className="flex gap-6 md:gap-10 whitespace-nowrap"
           animate={{ x: ["0%", "-33.33%"] }}
-          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
+          transition={{ duration: 14, ease: "linear", repeat: Infinity }}
         >
           {items.map((phrase, i) => (
             <span
               key={`a-${i}`}
-              className="text-foreground/60 text-4xl md:text-6xl font-heading font-bold tracking-wide select-none"
+              className="text-foreground/[0.65] text-4xl md:text-6xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
-              <span className="text-primary/50 mx-4 md:mx-6">·</span>
+              <span className="text-primary/[0.65] mx-4 md:mx-6">·</span>
             </span>
           ))}
         </motion.div>
@@ -42,15 +42,15 @@ const MarqueeSection = () => {
         <motion.div
           className="flex gap-6 md:gap-10 whitespace-nowrap"
           animate={{ x: ["-33.33%", "0%"] }}
-          transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+          transition={{ duration: 16, ease: "linear", repeat: Infinity }}
         >
           {items.map((phrase, i) => (
             <span
               key={`b-${i}`}
-              className="text-primary/50 text-4xl md:text-6xl font-heading font-bold tracking-wide select-none"
+              className="text-primary/[0.65] text-4xl md:text-6xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
-              <span className="text-foreground/40 mx-4 md:mx-6">·</span>
+              <span className="text-foreground/[0.65] mx-4 md:mx-6">·</span>
             </span>
           ))}
         </motion.div>
