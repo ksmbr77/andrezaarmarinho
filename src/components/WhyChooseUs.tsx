@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, Truck, MessageCircle } from "lucide-react";
+import { Award, Truck, MessageCircle, Gem, ShieldCheck } from "lucide-react";
 
 const highlights = [
   {
@@ -9,57 +9,70 @@ const highlights = [
     desc: "Reconhecida como referência em qualidade e variedade pelo terceiro ano consecutivo.",
   },
   {
+    icon: Gem,
+    title: "Produtos de Alta Qualidade",
+    desc: "Trabalhamos apenas com fornecedores selecionados para garantir o melhor para sua produção.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Garantia de Satisfação",
+    desc: "Compromisso com a qualidade em cada produto. Sua confiança é nossa prioridade.",
+  },
+  {
     icon: Truck,
     title: "Entrega Nacional",
     desc: "Enviamos para todas as regiões do país com segurança e agilidade.",
   },
   {
     icon: MessageCircle,
-    title: "Atendimento Rápido",
-    desc: "Resposta ágil via WhatsApp para tirar dúvidas e fechar pedidos.",
+    title: "Atendimento Personalizado",
+    desc: "Resposta ágil via WhatsApp para tirar dúvidas e fechar pedidos sob medida.",
   },
 ];
 
 const WhyChooseUs = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
     <section id="diferenciais" className="relative" ref={ref}>
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-      <div className="px-6 py-28 md:py-36 lg:py-44">
+      <div className="px-6 py-24 md:py-32 lg:py-40">
         <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center mb-20 md:mb-24"
+            className="text-center mb-16 md:mb-20"
           >
-            <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 mb-5">Diferenciais</p>
+            <p className="text-[11px] tracking-[0.3em] uppercase text-primary mb-5">Diferenciais</p>
             <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
               Por que a <span className="text-primary">Andreza</span>?
             </h2>
-            <p className="text-muted-foreground text-sm md:text-base max-w-md mx-auto leading-relaxed">
-              Mais do que um armarinho — somos parceiras da sua produção.
+            <p className="text-muted-foreground text-base md:text-lg max-w-lg mx-auto leading-relaxed">
+              Mais do que um armarinho — somos parceiras da sua produção com produtos de qualidade comprovada.
             </p>
           </motion.div>
 
-          {/* Glass card list — stacked style */}
           <div className="max-w-2xl mx-auto space-y-4">
             {highlights.map((h, i) => (
               <motion.div
                 key={h.title}
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="group flex items-start gap-5 bg-foreground/[0.03] backdrop-blur-sm border border-border/20 rounded-2xl px-7 py-6 hover:bg-foreground/[0.06] hover:border-primary/15 transition-all duration-500"
+                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.02, x: 8 }}
+                className="group flex items-start gap-5 bg-foreground/[0.04] backdrop-blur-sm border border-border/30 rounded-2xl px-7 py-6 hover:bg-primary/[0.06] hover:border-primary/25 transition-all duration-500 cursor-default"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-primary/15 transition-colors duration-500">
+                <motion.div
+                  whileHover={{ rotate: 5 }}
+                  className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-500"
+                >
                   <h.icon size={20} className="text-primary" strokeWidth={1.5} />
-                </div>
+                </motion.div>
                 <div>
-                  <h3 className="font-semibold text-base mb-1">{h.title}</h3>
+                  <h3 className="font-semibold text-base mb-1.5 group-hover:text-primary transition-colors duration-300">{h.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
                 </div>
               </motion.div>
@@ -68,7 +81,7 @@ const WhyChooseUs = () => {
         </div>
       </div>
 
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
     </section>
   );
 };
