@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-16">
           <div className="max-w-xs">
-            <img src={logoFull} alt="Andreza Armarinho" className="h-10 brightness-0 invert mb-5" />
+            <img src={logoFull} alt="Andreza Armarinho" className="h-10 mb-5" />
             <p className="text-muted-foreground text-sm leading-relaxed">
               Sua produção começa aqui. Líder em vendas de produtos para fabricação em Sergipe.
             </p>
