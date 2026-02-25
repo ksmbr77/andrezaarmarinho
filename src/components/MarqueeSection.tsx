@@ -14,49 +14,51 @@ const phrases = [
 ];
 
 const MarqueeSection = () => {
-  const items = [...phrases, ...phrases];
+  const items = [...phrases, ...phrases, ...phrases];
 
   return (
-    <section className="relative overflow-hidden py-10 md:py-14 border-y border-border/10">
-      {/* Row 1 — left to right */}
-      <div className="relative mb-3 md:mb-4">
+    <section className="relative overflow-hidden py-8 md:py-12">
+      {/* Row 1 */}
+      <div className="relative mb-2 md:mb-3">
         <motion.div
-          className="flex gap-8 md:gap-12 whitespace-nowrap"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+          className="flex gap-6 md:gap-10 whitespace-nowrap"
+          animate={{ x: ["0%", "-33.33%"] }}
+          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
         >
           {items.map((phrase, i) => (
             <span
               key={`a-${i}`}
-              className="text-foreground/[0.07] text-2xl md:text-4xl font-heading font-bold tracking-wide select-none"
+              className="text-foreground/20 text-3xl md:text-5xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
+              <span className="text-primary/30 mx-4 md:mx-6">·</span>
             </span>
           ))}
         </motion.div>
       </div>
 
-      {/* Row 2 — right to left */}
+      {/* Row 2 */}
       <div className="relative">
         <motion.div
-          className="flex gap-8 md:gap-12 whitespace-nowrap"
-          animate={{ x: ["-50%", "0%"] }}
-          transition={{ duration: 35, ease: "linear", repeat: Infinity }}
+          className="flex gap-6 md:gap-10 whitespace-nowrap"
+          animate={{ x: ["-33.33%", "0%"] }}
+          transition={{ duration: 28, ease: "linear", repeat: Infinity }}
         >
           {items.map((phrase, i) => (
             <span
               key={`b-${i}`}
-              className="text-primary/[0.08] text-2xl md:text-4xl font-heading font-bold tracking-wide select-none"
+              className="text-primary/25 text-3xl md:text-5xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
+              <span className="text-foreground/15 mx-4 md:mx-6">·</span>
             </span>
           ))}
         </motion.div>
       </div>
 
       {/* Fade edges */}
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-16 md:w-28 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
     </section>
   );
 };
