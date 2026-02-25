@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoFull from "@/assets/logo-full.png";
 
@@ -18,67 +18,72 @@ const Navbar = () => {
   const navLinks = [
     { label: "Início", href: "#hero" },
     { label: "Catálogo", href: "#catalogo" },
-    { label: "Ofertas", href: "#ofertas" },
-    { label: "Localização", href: "#localizacao" },
+    { label: "Contato", href: "#contato" },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md shadow-lg shadow-background/50" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? "bg-background/90 backdrop-blur-xl" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4 md:py-5">
         <a href="#hero" className="flex-shrink-0">
-          <img src={logoFull} alt="Andreza Armarinho" className="h-8 md:h-10 brightness-0 invert" />
+          <img src={logoFull} alt="Andreza Armarinho" className="h-7 md:h-8 brightness-0 invert" />
         </a>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
+              className="text-[13px] tracking-wide uppercase text-foreground/60 hover:text-foreground transition-colors duration-300"
             >
               {link.label}
             </a>
           ))}
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp flex items-center gap-2 !px-5 !py-2 text-sm">
-            <MessageCircle size={16} />
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13px] tracking-wide uppercase bg-primary text-primary-foreground px-5 py-2 rounded-full hover:bg-primary/90 transition-colors duration-300"
+          >
             WhatsApp
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-foreground p-2">
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-foreground p-1">
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/98 backdrop-blur-md border-t border-border overflow-hidden"
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-background/98 backdrop-blur-xl border-t border-border/50 overflow-hidden"
           >
-            <div className="flex flex-col px-4 py-4 gap-4">
+            <div className="flex flex-col px-6 py-6 gap-5">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-foreground/80 hover:text-primary transition-colors py-2 text-lg"
+                  className="text-foreground/70 hover:text-foreground transition-colors text-sm tracking-wide uppercase"
                 >
                   {link.label}
                 </a>
               ))}
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp flex items-center justify-center gap-2 mt-2">
-                <MessageCircle size={18} />
-                Falar no WhatsApp
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-primary-foreground text-center py-3 rounded-full text-sm tracking-wide uppercase mt-2"
+              >
+                WhatsApp
               </a>
             </div>
           </motion.div>

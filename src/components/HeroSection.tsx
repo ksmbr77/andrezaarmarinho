@@ -1,89 +1,98 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Star, Package, Phone } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/5579999999999";
+
+const transition = { duration: 1, ease: [0.16, 1, 0.3, 1] };
 
 const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated mesh background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary to-background animate-mesh" />
+      {/* Subtle gradient bg */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.04] via-background to-background" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/[0.03] rounded-full blur-[120px]" />
       </div>
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'linear-gradient(hsl(0 100% 40%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 100% 40%) 1px, transparent 1px)',
-        backgroundSize: '60px 60px'
+      {/* Minimal grid */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: 'linear-gradient(hsl(0 0% 100%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100%) 1px, transparent 1px)',
+        backgroundSize: '80px 80px'
       }} />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ ...transition, delay: 0.2 }}
+          className="text-[11px] md:text-[13px] tracking-[0.3em] uppercase text-muted-foreground mb-8"
         >
-          <span className="inline-block bg-primary/20 text-primary font-semibold px-4 py-1.5 rounded-full text-sm mb-6 border border-primary/30">
-            Líder em vendas de produtos para fabricação
-          </span>
-        </motion.div>
+          Líder em produtos para fabricação em Sergipe
+        </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
+          transition={{ ...transition, delay: 0.4 }}
+          className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.05] mb-8 tracking-tight"
         >
-          Sua Produção{" "}
-          <span className="text-gradient">Começa Aqui</span>
+          Sua Produção
+          <br />
+          <span className="text-primary">Começa Aqui</span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10"
+          transition={{ ...transition, delay: 0.6 }}
+          className="text-muted-foreground text-base md:text-lg max-w-md mx-auto mb-12 leading-relaxed"
         >
-          O maior armarinho de Sergipe com tudo para sua produção artesanal e industrial. Qualidade, variedade e os melhores preços.
+          Tudo para sua produção artesanal e industrial. Qualidade, variedade e os melhores preços.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          transition={{ ...transition, delay: 0.8 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
         >
-          <a href="#catalogo" className="btn-cta text-lg">
+          <a href="#catalogo" className="bg-primary text-primary-foreground rounded-full px-8 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02]">
             Ver Catálogo
           </a>
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-lg flex items-center justify-center gap-2">
-            <MessageCircle size={20} />
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-border text-foreground rounded-full px-8 py-3.5 text-sm tracking-wide hover:border-foreground/30 transition-all duration-300"
+          >
             Falar no WhatsApp
           </a>
         </motion.div>
 
-        {/* Trust badges */}
-        <motion.div
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-4 md:gap-8"
+          transition={{ ...transition, delay: 1 }}
+          className="text-muted-foreground/50 text-[11px] tracking-[0.2em] uppercase"
         >
-          {[
-            { icon: Star, text: "3x Armarinho Destaque" },
-            { icon: Package, text: "Entrega para todo Brasil" },
-            { icon: Phone, text: "Atendimento via WhatsApp" },
-          ].map((badge) => (
-            <div key={badge.text} className="flex items-center gap-2 text-muted-foreground text-sm">
-              <badge.icon size={16} className="text-accent" />
-              <span>{badge.text}</span>
-            </div>
-          ))}
-        </motion.div>
+          3x eleita armarinho destaque &nbsp;·&nbsp; Entregas para todo o Brasil
+        </motion.p>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowDown size={16} className="text-muted-foreground/30" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
