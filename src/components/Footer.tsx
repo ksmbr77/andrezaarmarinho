@@ -51,11 +51,11 @@ const Footer = () => {
 
         <div className="border-t border-border/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground/40 text-xs">© 2026 Andreza Armarinho® — Todos os direitos reservados</p>
-          <div className="flex items-center gap-2 text-muted-foreground/40 text-xs">
-            <span>Desenvolvido por</span>
-            <img src={flyLogo} alt="Fly Agency" className="h-5 opacity-40" />
-            <span className="font-medium">Fly Agency</span>
-          </div>
+          <a href="https://www.instagram.com/fly.agencyy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-muted-foreground/60 hover:text-foreground/80 transition-colors duration-300">
+            <span className="text-sm">Desenvolvido por</span>
+            <img src={flyLogo} alt="Fly Agency" className="h-7 opacity-70" />
+            <span className="font-semibold text-sm">Fly Agency</span>
+          </a>
         </div>
       </div>
     </footer>
