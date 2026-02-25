@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Layers, Ribbon, Scissors, Package, Wrench, Ruler } from "lucide-react";
 
-const WHATSAPP_LINK = "https://wa.me/5579999999999";
+const WHATSAPP_LINK = "https://wa.me/5579996373312";
 
 const categories = [
   { name: "Tecidos", icon: Layers, msg: "Olá Andreza! Tenho interesse em Tecidos." },

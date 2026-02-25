@@ -2,7 +2,7 @@ import { Instagram, MessageCircle } from "lucide-react";
 import logoFull from "@/assets/logo-full.png";
 import flyLogo from "@/assets/fly-agency.png";
 
-const WHATSAPP_LINK = "https://wa.me/5579999999999?text=Olá Andreza Armarinho! Vim pelo site e gostaria de mais informações.";
+const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Vim pelo site e gostaria de mais informações.";
 
 const Footer = () => {
   const links = [
@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-16">
           <div className="max-w-xs">
-            <img src={logoFull} alt="Andreza Armarinho" className="h-14 mb-5" />
+            <img src={logoFull} alt="Andreza Armarinho" className="h-16 mb-5" />
             <p className="text-muted-foreground text-sm leading-relaxed">
               Sua produção começa aqui. Líder em vendas de produtos para fabricação em Sergipe.
             </p>
@@ -51,10 +51,10 @@ const Footer = () => {
 
         <div className="border-t border-border/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground/40 text-xs">© 2026 Andreza Armarinho® — Todos os direitos reservados</p>
-          <a href="https://www.instagram.com/fly.agencyy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-muted-foreground/60 hover:text-foreground/80 transition-colors duration-300">
-            <span className="text-sm">Desenvolvido por</span>
-            <img src={flyLogo} alt="Fly Agency" className="h-7 opacity-70" />
-            <span className="font-semibold text-sm">Fly Agency</span>
+          <a href="https://www.instagram.com/fly.agencyy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground/70 hover:text-foreground transition-colors duration-300">
+            <span className="text-base">Desenvolvido por</span>
+            <img src={flyLogo} alt="Fly Agency" className="h-8 opacity-80" />
+            <span className="font-bold text-base">Fly Agency</span>
           </a>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
-const WHATSAPP_LINK = "https://wa.me/5579999999999";
+const WHATSAPP_LINK = "https://wa.me/5579996373312";
 
 const interests = [
   "Tecidos",
