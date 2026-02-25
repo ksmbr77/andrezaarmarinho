@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const WHATSAPP_LINK = "https://wa.me/5579999999999?text=Olá Andreza Armarinho! Quero aproveitar as ofertas especiais do mês!";
+const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Quero aproveitar as ofertas especiais do mês!";
 
 const OffersBanner = () => {
   const ref = useRef(null);

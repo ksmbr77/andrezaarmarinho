@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-const WHATSAPP_LINK = "https://wa.me/5579999999999?text=Olá Andreza Armarinho! Vim pelo site e gostaria de mais informações.";
+const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Vim pelo site e gostaria de mais informações.";
 
 const transition = { duration: 1, ease: [0.16, 1, 0.3, 1] };
 

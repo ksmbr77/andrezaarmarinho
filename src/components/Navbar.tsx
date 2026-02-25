@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoFull from "@/assets/logo-full.png";
 
-const WHATSAPP_LINK = "https://wa.me/5579999999999?text=Olá Andreza Armarinho! Vim pelo site e gostaria de saber mais sobre os produtos.";
+const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Vim pelo site e gostaria de saber mais sobre os produtos.";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +30,7 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4 md:py-5">
         <a href="#hero" className="flex-shrink-0">
-          <img src={logoFull} alt="Andreza Armarinho" className="h-14 md:h-16" />
+          <img src={logoFull} alt="Andreza Armarinho" className="h-16 md:h-20" />
         </a>
 
         <div className="hidden md:flex items-center gap-10">
