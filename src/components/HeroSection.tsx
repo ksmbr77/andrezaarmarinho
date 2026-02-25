@@ -69,9 +69,9 @@ const HeroSection = () => {
           transition={{ ...transition, delay: 0.7 }}
           className="text-muted-foreground text-base md:text-xl max-w-lg mx-auto mb-6 leading-relaxed"
         >
-          Líder em vendas de produtos para fabricação.
+          Tudo para sua produção artesanal e industrial.
           <br className="hidden md:block" />
-          Qualidade, variedade e os melhores preços.
+          Qualidade, variedade e os melhores preços do mercado.
         </motion.p>
 
         {/* Trust line */}
