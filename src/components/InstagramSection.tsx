@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Instagram } from "lucide-react";
 
 const videos = [
@@ -12,6 +12,34 @@ const videos = [
     title: "Andreza Armarinho - Vídeo 2",
   },
 ];
+
+const LazyIframe = ({ url, title }: { url: string; title: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "200px" });
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div ref={ref} className="w-full h-full relative">
+      {isInView && (
+        <iframe
+          src={url}
+          title={title}
+          className={`w-full h-full transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+          frameBorder="0"
+          scrolling="no"
+          allowFullScreen
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+        />
+      )}
+      {(!isInView || !loaded) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-card/50">
+          <Instagram size={32} className="text-muted-foreground/30 animate-pulse" />
+        </div>
+      )}
+    </div>
+  );
+};
 
 const InstagramSection = () => {
   const ref = useRef(null);
@@ -26,7 +54,7 @@ const InstagramSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-center mb-14 md:mb-18"
           >
             <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 mb-5">Acompanhe</p>
@@ -44,26 +72,18 @@ const InstagramSection = () => {
                 key={video.url}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="rounded-2xl overflow-hidden border border-border/30 bg-card/50 aspect-[4/5] md:aspect-[3/4]"
               >
-                <iframe
-                  src={video.url}
-                  title={video.title}
-                  className="w-full h-full"
-                  frameBorder="0"
-                  scrolling="no"
-                  allowFullScreen
-                  loading="lazy"
-                />
+                <LazyIframe url={video.url} title={video.title} />
               </motion.div>
             ))}
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             className="text-center"
           >
             <a
