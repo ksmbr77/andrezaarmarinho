@@ -6,10 +6,9 @@ import HeroSection from "@/components/HeroSection";
 import CategoriesSection from "@/components/CategoriesSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import OffersBanner from "@/components/OffersBanner";
-import InstagramSection from "@/components/InstagramSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import LeadFormSection from "@/components/LeadFormSection";
 import LocationSection from "@/components/LocationSection";
-import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
@@ -33,10 +32,9 @@ const Index = () => {
             <CategoriesSection />
             <WhyChooseUs />
             <OffersBanner />
-            <InstagramSection />
             <TestimonialsSection />
+            <LeadFormSection />
             <LocationSection />
-            <NewsletterSection />
           </main>
           <Footer />
           <WhatsAppButton />

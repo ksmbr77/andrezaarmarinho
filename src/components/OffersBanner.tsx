@@ -1,78 +1,33 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Flame } from "lucide-react";
+import { useRef } from "react";
 
 const WHATSAPP_LINK = "https://wa.me/5579999999999?text=Olá! Quero aproveitar as ofertas do mês!";
 
-const getEndOfMonth = () => {
-  const now = new Date();
-  return new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
-};
-
 const OffersBanner = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    const tick = () => {
-      const end = getEndOfMonth();
-      const diff = end.getTime() - Date.now();
-      if (diff <= 0) return;
-      setTimeLeft({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      });
-    };
-    tick();
-    const interval = setInterval(tick, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const timeBlocks = [
-    { val: timeLeft.days, label: "Dias" },
-    { val: timeLeft.hours, label: "Horas" },
-    { val: timeLeft.minutes, label: "Min" },
-    { val: timeLeft.seconds, label: "Seg" },
-  ];
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="ofertas" className="relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary" />
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px)',
-        backgroundSize: '30px 30px'
-      }} />
-
+    <section className="px-6 py-24 md:py-32" ref={ref}>
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.6 }}
-        className="relative z-10 section-padding text-center text-primary-foreground"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-4xl mx-auto bg-primary/[0.06] border border-primary/10 rounded-3xl p-12 md:p-16 text-center"
       >
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <Flame size={28} className="text-accent" />
-          <span className="text-accent font-bold text-lg">OFERTAS DO MÊS</span>
-          <Flame size={28} className="text-accent" />
-        </div>
-
-        <h2 className="font-heading text-3xl md:text-5xl font-bold mb-3">
-          Fevereiro Imbatível 🔥
+        <p className="text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Ofertas do mês</p>
+        <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+          Ofertas Especiais do Mês
         </h2>
-        <p className="text-primary-foreground/80 text-lg mb-8">Descontos imperdíveis que acabam em:</p>
-
-        <div className="flex justify-center gap-3 md:gap-5 mb-10">
-          {timeBlocks.map((b) => (
-            <div key={b.label} className="bg-background/20 backdrop-blur-sm rounded-xl p-3 md:p-4 min-w-[70px]">
-              <span className="text-3xl md:text-4xl font-bold font-heading block">{String(b.val).padStart(2, "0")}</span>
-              <span className="text-xs text-primary-foreground/70 uppercase">{b.label}</span>
-            </div>
-          ))}
-        </div>
-
-        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="inline-block bg-foreground text-primary font-bold rounded-full px-10 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <p className="text-muted-foreground text-sm mb-10 max-w-md mx-auto">
+          Descontos exclusivos para produção. Condições especiais por tempo limitado.
+        </p>
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-primary text-primary-foreground rounded-full px-8 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02]"
+        >
           Aproveitar Agora
         </a>
       </motion.div>
