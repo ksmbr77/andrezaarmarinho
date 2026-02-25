@@ -1,16 +1,10 @@
 import { motion } from "framer-motion";
 
 const phrases = [
+  "Exclusividade",
   "Qualidade",
   "Variedade",
-  "Exclusividade",
-  "Durabilidade",
-  "Confiança",
-  "Tradição",
-  "Inovação",
-  "Compromisso",
-  "Excelência",
-  "Criatividade",
+  "Preço Bom",
 ];
 
 const MarqueeSection = () => {
@@ -23,7 +17,7 @@ const MarqueeSection = () => {
         <motion.div
           className="flex gap-6 md:gap-10 whitespace-nowrap"
           animate={{ x: ["0%", "-33.33%"] }}
-          transition={{ duration: 14, ease: "linear", repeat: Infinity }}
+          transition={{ duration: 6, ease: "linear", repeat: Infinity }}
         >
           {items.map((phrase, i) => (
             <span
@@ -42,7 +36,7 @@ const MarqueeSection = () => {
         <motion.div
           className="flex gap-6 md:gap-10 whitespace-nowrap"
           animate={{ x: ["-33.33%", "0%"] }}
-          transition={{ duration: 16, ease: "linear", repeat: Infinity }}
+          transition={{ duration: 7, ease: "linear", repeat: Infinity }}
         >
           {items.map((phrase, i) => (
             <span
