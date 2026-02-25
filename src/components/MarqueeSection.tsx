@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 const phrases = [
   "Exclusividade",
   "Qualidade",
@@ -8,17 +6,13 @@ const phrases = [
 ];
 
 const MarqueeSection = () => {
-  const items = [...phrases, ...phrases, ...phrases];
+  const items = [...phrases, ...phrases, ...phrases, ...phrases];
 
   return (
     <section className="relative overflow-hidden py-10 md:py-14">
       {/* Row 1 */}
-      <div className="relative mb-3 md:mb-4">
-        <motion.div
-          className="flex gap-6 md:gap-10 whitespace-nowrap"
-          animate={{ x: ["0%", "-33.33%"] }}
-          transition={{ duration: 6, ease: "linear", repeat: Infinity }}
-        >
+      <div className="relative mb-3 md:mb-4 overflow-hidden">
+        <div className="flex gap-6 md:gap-10 whitespace-nowrap animate-marquee-left">
           {items.map((phrase, i) => (
             <span
               key={`a-${i}`}
@@ -28,16 +22,12 @@ const MarqueeSection = () => {
               <span className="text-primary/[0.65] mx-4 md:mx-6">·</span>
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Row 2 */}
-      <div className="relative">
-        <motion.div
-          className="flex gap-6 md:gap-10 whitespace-nowrap"
-          animate={{ x: ["-33.33%", "0%"] }}
-          transition={{ duration: 7, ease: "linear", repeat: Infinity }}
-        >
+      <div className="relative overflow-hidden">
+        <div className="flex gap-6 md:gap-10 whitespace-nowrap animate-marquee-right">
           {items.map((phrase, i) => (
             <span
               key={`b-${i}`}
@@ -47,7 +37,7 @@ const MarqueeSection = () => {
               <span className="text-foreground/[0.65] mx-4 md:mx-6">·</span>
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute inset-y-0 left-0 w-12 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
