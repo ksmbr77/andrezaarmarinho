@@ -44,13 +44,13 @@ const LeadFormSection = () => {
             <p className="text-muted-foreground text-sm md:text-base">Responda em segundos e fale direto com a Andreza no WhatsApp.</p>
           </div>
 
-          <div className="border border-border/50 rounded-xl p-5 sm:p-6 md:p-10 shadow-sm">
+          <div className="border-2 border-primary/30 rounded-xl p-5 sm:p-6 md:p-10 shadow-sm">
             {/* Progress */}
             <div className="flex gap-2 mb-10">
               {[0, 1, 2].map((s) => (
                 <div
                   key={s}
-                  className={`h-[2px] flex-1 rounded-full transition-all duration-500 ${s <= step ? "bg-primary" : "bg-border/30"}`}
+                  className={`h-[2px] flex-1 rounded-full transition-all duration-500 ${s <= step ? "bg-primary" : "bg-primary/15"}`}
                 />
               ))}
             </div>
