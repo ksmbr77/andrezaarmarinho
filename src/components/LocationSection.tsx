@@ -1,7 +1,51 @@
+import { useRef, useState, useEffect } from "react";
 import { MapPin, Clock, MessageCircle } from "lucide-react";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
 const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Gostaria de saber mais informações sobre a loja.";
+const MAP_SRC = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.5!2d-38.0001055!3d-11.1881728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x711b318661a587b%3A0x556c5e3d5cfd4c!2sAndreza%20Armarinho!5e0!3m2!1spt-BR!2sbr!4v1700000000000";
+
+const LazyMap = () => {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setShow(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={mapRef} className="rounded-xl overflow-hidden border border-border/30 h-[250px] sm:h-[280px] md:h-full min-h-[250px] sm:min-h-[280px]">
+      {show ? (
+        <iframe
+          src={MAP_SRC}
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Localização Andreza Armarinho"
+        />
+      ) : (
+        <div className="w-full h-full bg-card flex items-center justify-center">
+          <MapPin size={24} className="text-muted-foreground/30 animate-pulse" />
+        </div>
+      )}
+    </div>
+  );
+};
 
 const LocationSection = () => {
   const { ref, visible } = useFadeIn();
@@ -54,18 +98,7 @@ const LocationSection = () => {
               </a>
             </div>
 
-            <div className="rounded-xl overflow-hidden border border-border/30 h-[250px] sm:h-[280px] md:h-full min-h-[250px] sm:min-h-[280px]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.5!2d-38.0001055!3d-11.1881728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x711b318661a587b%3A0x556c5e3d5cfd4c!2sAndreza%20Armarinho!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Localização Andreza Armarinho"
-              />
-            </div>
+            <LazyMap />
           </div>
         </div>
       </div>

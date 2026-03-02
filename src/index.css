@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.cdnfonts.com/css/lemon-milk');
 
+/* GPU compositing for smooth scrolling */
+@layer base {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,6 +66,9 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
