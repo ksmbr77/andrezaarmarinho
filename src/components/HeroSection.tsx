@@ -28,7 +28,7 @@ const HeroSection = () => {
           transition={{ ...transition, delay: 0.2 }}
           className="mb-10"
         >
-          <span className="inline-flex items-center gap-2.5 border border-primary-foreground/30 bg-primary-foreground/10 rounded-lg px-5 py-2.5 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.15em] text-primary-foreground/80">
+          <span className="inline-flex items-center gap-2.5 border border-primary-foreground/40 bg-primary-foreground/15 rounded-lg px-5 py-2.5 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.15em] text-primary-foreground font-medium backdrop-blur-sm shadow-lg shadow-black/10 animate-pulse-glow">
             <span className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
             O Maior Armarinho de Sergipe
           </span>
