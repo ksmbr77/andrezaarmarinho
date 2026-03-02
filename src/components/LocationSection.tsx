@@ -25,7 +25,7 @@ const LocationSection = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-medium mb-1.5">Endereço</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">Rua Exemplo, 123 — Centro<br/>Aracaju - SE, 49000-000</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Av. Luís Alves de Oliveira Filho, 404-484<br/>Tobias Barreto - SE, 49300-000</p>
                 </div>
               </div>
 

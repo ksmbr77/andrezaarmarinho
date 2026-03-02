@@ -51,7 +51,7 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/20 pt-6 sm:pt-8 flex flex-col items-center gap-4 md:flex-row md:justify-between">
           <p className="text-primary-foreground/50 text-xs">© 2026 Andreza Armarinho® — Todos os direitos reservados</p>
-          <a href="https://www.instagram.com/fly.agencyy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-primary-foreground/10 border border-primary-foreground/20 rounded-lg px-5 py-3 text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/15 transition-all duration-300">
+          <a href="https://www.instagram.com/fly.agencyy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300">
             <span className="text-sm sm:text-base">Desenvolvido por</span>
             <img src={flyLogo} alt="Fly Agency" className="h-10 sm:h-12" />
             <span className="font-bold text-sm sm:text-base md:text-lg">Fly Agency</span>
