@@ -11,7 +11,7 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [playing, setPlaying] = useState(false);
+  const [interacting, setInteracting] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -29,15 +29,11 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
     return () => obs.disconnect();
   }, []);
 
-  const togglePlay = () => {
-    setPlaying((prev) => !prev);
-  };
-
   return (
     <div ref={ref} className="w-full h-full relative group">
       {show && (
         <iframe
-          src={playing ? `${url}?autoplay=1` : url}
+          src={url}
           title={title}
           className={`w-full h-full transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
           frameBorder="0"
@@ -46,18 +42,28 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
           loading="lazy"
           allow="autoplay; encrypted-media"
           onLoad={() => setLoaded(true)}
+          style={{ pointerEvents: interacting ? 'auto' : 'none' }}
         />
       )}
 
-      {/* Play / Pause overlay button */}
+      {/* Overlay + Play/Pause button */}
       {loaded && (
-        <button
-          onClick={togglePlay}
-          className="absolute bottom-4 right-4 z-20 w-12 h-12 rounded-full bg-primary/90 hover:bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-          aria-label={playing ? "Pausar vídeo" : "Reproduzir vídeo"}
-        >
-          {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" className="ml-0.5" />}
-        </button>
+        <>
+          {!interacting && (
+            <div className="absolute inset-0 z-10 bg-black/5 backdrop-blur-[1px] transition-opacity duration-300" />
+          )}
+          <button
+            onClick={() => setInteracting((prev) => !prev)}
+            className="absolute bottom-5 right-5 z-20 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-xl shadow-primary/40 transition-all duration-300 hover:scale-110 active:scale-95"
+            aria-label={interacting ? "Pausar vídeo" : "Reproduzir vídeo"}
+          >
+            {interacting ? (
+              <Pause size={22} fill="currentColor" strokeWidth={0} />
+            ) : (
+              <Play size={22} fill="currentColor" strokeWidth={0} className="ml-0.5" />
+            )}
+          </button>
+        </>
       )}
 
       {(!show || !loaded) && (
