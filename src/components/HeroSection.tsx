@@ -10,17 +10,17 @@ const HeroSection = () => {
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-background" />
       
-      {/* Simplified glow — single element instead of three */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/[0.07] rounded-full blur-[100px] will-change-transform" />
+      {/* Subtle glow for light theme */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/[0.04] rounded-full blur-[120px] will-change-transform" />
 
-      {/* Grid — static, lightweight */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'linear-gradient(hsl(0 100% 40% / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(0 100% 40% / 0.3) 1px, transparent 1px)',
+      {/* Grid — subtle on white */}
+      <div className="absolute inset-0 opacity-[0.04]" style={{
+        backgroundImage: 'linear-gradient(hsl(0 0% 0% / 0.08) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 0% / 0.08) 1px, transparent 1px)',
         backgroundSize: '60px 60px'
       }} />
 
-      {/* Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_75%)]" />
+      {/* Vignette — light fade */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_80%)]" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         {/* Badge */}

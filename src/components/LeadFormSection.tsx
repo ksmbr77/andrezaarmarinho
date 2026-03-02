@@ -65,7 +65,7 @@ const LeadFormSection = () => {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Seu nome"
                   maxLength={100}
-                  className="w-full bg-transparent border-b border-border/40 pb-3 text-lg focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/20"
+                  className="w-full bg-transparent border-b border-border pb-3 text-lg focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/40"
                   autoFocus
                 />
               </div>
@@ -103,7 +103,7 @@ const LeadFormSection = () => {
                   placeholder="Ex.: Preciso de 50m de tecido liso..."
                   maxLength={500}
                   rows={3}
-                  className="w-full bg-transparent border-b border-border/40 pb-3 text-base focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/20 resize-none"
+                  className="w-full bg-transparent border-b border-border pb-3 text-base focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/40 resize-none"
                 />
               </div>
             )}
