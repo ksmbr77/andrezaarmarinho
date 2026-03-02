@@ -45,7 +45,7 @@ const HeroSection = () => {
           className="text-primary-foreground/80 text-sm sm:text-base md:text-xl max-w-lg mx-auto mb-6 leading-relaxed animate-hero-fade-in"
           style={{ animationDelay: '0.5s' }}
         >
-          Tudo para sua produção artesanal e industrial.
+          Tudo para sua produção artesanal e industrial.{" "}
           <br className="hidden md:block" />
           Qualidade, variedade e os melhores preços do mercado.
         </p>
