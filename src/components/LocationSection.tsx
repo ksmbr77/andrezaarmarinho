@@ -46,7 +46,7 @@ const LocationSection = () => {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2.5 bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                className="group inline-flex items-center gap-2.5 bg-primary text-primary-foreground rounded-lg px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
               >
                 <MessageCircle size={16} strokeWidth={1.5} />
                 Enviar Mensagem
@@ -54,7 +54,7 @@ const LocationSection = () => {
               </a>
             </div>
 
-            <div className="rounded-2xl overflow-hidden border border-border/30 h-[250px] sm:h-[280px] md:h-full min-h-[250px] sm:min-h-[280px]">
+            <div className="rounded-xl overflow-hidden border border-border/30 h-[250px] sm:h-[280px] md:h-full min-h-[250px] sm:min-h-[280px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.5!2d-38.0001055!3d-11.1881728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x711b318661a587b%3A0x556c5e3d5cfd4c!2sAndreza%20Armarinho!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
                 width="100%"

@@ -44,7 +44,7 @@ const LeadFormSection = () => {
             <p className="text-muted-foreground text-sm md:text-base">Responda em segundos e fale direto com a Andreza no WhatsApp.</p>
           </div>
 
-          <div className="border border-border/50 rounded-3xl p-5 sm:p-6 md:p-10 shadow-sm">
+          <div className="border border-border/50 rounded-xl p-5 sm:p-6 md:p-10 shadow-sm">
             {/* Progress */}
             <div className="flex gap-2 mb-10">
               {[0, 1, 2].map((s) => (
@@ -80,7 +80,7 @@ const LeadFormSection = () => {
                     <button
                       key={item}
                       onClick={() => toggleInterest(item)}
-                      className={`px-5 py-2.5 rounded-full text-sm border transition-all duration-300 ${
+                      className={`px-5 py-2.5 rounded-lg text-sm border transition-all duration-300 ${
                         selected.includes(item)
                           ? "bg-primary text-primary-foreground border-primary"
                           : "border-border/40 text-muted-foreground hover:border-primary/30 hover:text-foreground"
@@ -120,14 +120,14 @@ const LeadFormSection = () => {
                 <button
                   onClick={() => canProceed && setStep((s) => s + 1)}
                   disabled={!canProceed}
-                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-primary/20"
+                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-primary/20"
                 >
                   Próximo <ArrowRight size={14} />
                 </button>
               ) : (
                 <button
                   onClick={handleSubmit}
-                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
                 >
                   Enviar no WhatsApp <ArrowRight size={14} />
                 </button>

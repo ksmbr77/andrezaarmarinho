@@ -33,7 +33,7 @@ const Navbar = () => {
           <img
             src={logoFull}
             alt="Andreza Armarinho"
-            className={`h-10 md:h-14 lg:h-16 transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
+            className={`h-12 md:h-16 lg:h-20 transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
           />
         </a>
 
@@ -53,7 +53,7 @@ const Navbar = () => {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className={`text-[13px] tracking-wide uppercase px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-[1.02] ${
+            className={`text-[13px] tracking-wide uppercase px-6 py-2.5 rounded-lg transition-all duration-300 hover:scale-[1.02] ${
               scrolled
                 ? "bg-primary text-primary-foreground hover:bg-primary/90"
                 : "bg-primary-foreground text-primary hover:bg-primary-foreground/90"
@@ -95,7 +95,7 @@ const Navbar = () => {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary text-primary-foreground text-center py-3.5 rounded-full text-sm tracking-wide uppercase mt-2"
+                className="bg-primary text-primary-foreground text-center py-3.5 rounded-lg text-sm tracking-wide uppercase mt-2"
               >
                 Falar no WhatsApp
               </a>

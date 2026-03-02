@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
             {highlights.map((h, i) => (
               <div
                 key={h.title}
-                className="group flex items-start gap-4 sm:gap-5 bg-card border border-border/50 border-l-[4px] border-l-primary/60 rounded-2xl px-5 py-5 sm:px-7 sm:py-6 hover:border-primary/30 hover:border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 cursor-default"
+                className="group flex items-start gap-4 sm:gap-5 bg-card border border-border/50 border-l-[4px] border-l-primary/60 rounded-xl px-5 py-5 sm:px-7 sm:py-6 hover:border-primary/30 hover:border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 cursor-default"
                 style={{ animationDelay: `${i * 100}ms` }}
               >
                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/20 to-primary/8 border border-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:from-primary/30 group-hover:to-primary/15 group-hover:border-primary/40 transition-all duration-300">

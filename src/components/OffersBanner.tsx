@@ -8,7 +8,7 @@ const OffersBanner = () => {
   return (
     <section className="px-4 sm:px-6 py-16 sm:py-20 md:py-28" ref={ref}>
       <div
-        className={`max-w-4xl mx-auto relative overflow-hidden rounded-3xl transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
+        className={`max-w-4xl mx-auto relative overflow-hidden rounded-2xl transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(0_0%_100%/0.15),transparent_70%)]" />
@@ -25,7 +25,7 @@ const OffersBanner = () => {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 bg-primary-foreground text-primary rounded-full px-9 py-4 text-sm font-medium tracking-wide hover:bg-primary-foreground/90 transition-all duration-300 hover:shadow-lg"
+            className="group inline-flex items-center gap-2.5 bg-primary-foreground text-primary rounded-lg px-9 py-4 text-sm font-medium tracking-wide hover:bg-primary-foreground/90 transition-all duration-300 hover:shadow-lg"
           >
             Aproveitar Agora
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
