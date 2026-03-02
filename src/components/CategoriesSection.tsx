@@ -24,17 +24,18 @@ const CategoriesSection = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-          {categories.map((cat) => (
+          {categories.map((cat, i) => (
             <a
               key={cat.name}
               href={`${WHATSAPP_LINK}?text=${encodeURIComponent(cat.msg)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-card border border-border hover:border-primary/50 rounded-xl p-4 sm:p-5 md:p-8 text-center transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 overflow-hidden border-b-2 border-b-transparent hover:border-b-primary/60"
+              className={`group relative bg-card border border-border hover:border-primary/50 rounded-xl p-4 sm:p-5 md:p-8 text-center transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 overflow-hidden border-b-2 border-b-transparent hover:border-b-primary/60 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              style={{ transitionDelay: visible ? `${i * 80}ms` : "0ms" }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.00] to-primary/[0.00] group-hover:from-primary/[0.06] group-hover:to-primary/[0.02] transition-all duration-500" />
               <div className="relative">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center mx-auto mb-4 sm:mb-5 group-hover:bg-primary/25 group-hover:border-primary/40 transition-all duration-300">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center mx-auto mb-4 sm:mb-5 group-hover:bg-primary/25 group-hover:border-primary/40 group-hover:scale-110 transition-all duration-300">
                   <cat.icon size={24} className="text-primary" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-sm md:text-base font-medium tracking-wide group-hover:text-primary transition-colors duration-300">{cat.name}</h3>
