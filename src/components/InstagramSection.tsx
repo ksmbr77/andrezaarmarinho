@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Instagram } from "lucide-react";
+import { Instagram, Play, Pause } from "lucide-react";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
 const videos = [
@@ -11,6 +11,7 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -28,20 +29,37 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
     return () => obs.disconnect();
   }, []);
 
+  const togglePlay = () => {
+    setPlaying((prev) => !prev);
+  };
+
   return (
-    <div ref={ref} className="w-full h-full relative">
+    <div ref={ref} className="w-full h-full relative group">
       {show && (
         <iframe
-          src={url}
+          src={playing ? `${url}?autoplay=1` : url}
           title={title}
           className={`w-full h-full transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
           frameBorder="0"
           scrolling="no"
           allowFullScreen
           loading="lazy"
+          allow="autoplay; encrypted-media"
           onLoad={() => setLoaded(true)}
         />
       )}
+
+      {/* Play / Pause overlay button */}
+      {loaded && (
+        <button
+          onClick={togglePlay}
+          className="absolute bottom-4 right-4 z-20 w-12 h-12 rounded-full bg-primary/90 hover:bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+          aria-label={playing ? "Pausar vídeo" : "Reproduzir vídeo"}
+        >
+          {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" className="ml-0.5" />}
+        </button>
+      )}
+
       {(!show || !loaded) && (
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-card to-primary/[0.04]">
           <div className="flex flex-col items-center gap-3">
