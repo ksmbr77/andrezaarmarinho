@@ -33,7 +33,7 @@ const Navbar = () => {
           <img
             src={logoFull}
             alt="Andreza Armarinho"
-            className={`h-14 md:h-16 lg:h-20 transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
+            className={`h-16 sm:h-16 md:h-16 lg:h-20 transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
           />
         </a>
 
