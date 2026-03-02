@@ -20,7 +20,7 @@ const TestimonialsSection = () => {
   const t = testimonials[current];
 
   return (
-    <section className="px-6 py-24 md:py-32 lg:py-40" ref={ref}>
+    <section className="px-4 sm:px-6 py-16 sm:py-24 md:py-32 lg:py-40" ref={ref}>
       <div className={`max-w-3xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
         <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 text-center mb-16 md:mb-20">
           Depoimentos
@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
             ))}
           </div>
 
-          <p className="font-heading text-lg md:text-2xl lg:text-3xl leading-relaxed mb-10 text-foreground/90">
+          <p className="font-heading text-base sm:text-lg md:text-2xl lg:text-3xl leading-relaxed mb-10 text-foreground/90">
             "{t.text}"
           </p>
 

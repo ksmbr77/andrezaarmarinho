@@ -16,11 +16,11 @@ const WhyChooseUs = () => {
     <section id="diferenciais" className="relative" ref={ref}>
       <div className="section-divider" />
 
-      <div className="px-6 py-24 md:py-32 lg:py-40">
+      <div className="px-4 sm:px-6 py-16 sm:py-24 md:py-32 lg:py-40">
         <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
-          <div className="text-center mb-16 md:mb-20">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
             <p className="text-[11px] tracking-[0.3em] uppercase text-primary mb-5">Diferenciais</p>
-            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
               Por que a <span className="text-primary">Andreza</span>?
             </h2>
             <p className="text-muted-foreground text-sm md:text-lg max-w-lg mx-auto leading-relaxed">
@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
             {highlights.map((h, i) => (
               <div
                 key={h.title}
-                className="group flex items-start gap-5 bg-card border border-border/50 border-l-[4px] border-l-primary/60 rounded-2xl px-7 py-6 hover:border-primary/30 hover:border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 cursor-default"
+                className="group flex items-start gap-4 sm:gap-5 bg-card border border-border/50 border-l-[4px] border-l-primary/60 rounded-2xl px-5 py-5 sm:px-7 sm:py-6 hover:border-primary/30 hover:border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 cursor-default"
                 style={{ animationDelay: `${i * 100}ms` }}
               >
                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/20 to-primary/8 border border-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:from-primary/30 group-hover:to-primary/15 group-hover:border-primary/40 transition-all duration-300">

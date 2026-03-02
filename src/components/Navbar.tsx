@@ -28,9 +28,13 @@ const Navbar = () => {
         scrolled ? "bg-background/90 backdrop-blur-xl border-b border-border/20" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4 md:py-5">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4 md:py-5">
         <a href="#hero" className="flex-shrink-0">
-          <img src={logoFull} alt="Andreza Armarinho" className="h-12 md:h-16 lg:h-20" />
+          <img
+            src={logoFull}
+            alt="Andreza Armarinho"
+            className={`h-10 md:h-14 lg:h-16 transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-10">
@@ -38,7 +42,9 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-[13px] tracking-wide uppercase text-foreground/60 hover:text-foreground transition-colors duration-300"
+              className={`text-[13px] tracking-wide uppercase transition-colors duration-300 ${
+                scrolled ? "text-foreground/60 hover:text-foreground" : "text-primary-foreground/80 hover:text-primary-foreground"
+              }`}
             >
               {link.label}
             </a>
@@ -47,13 +53,20 @@ const Navbar = () => {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] tracking-wide uppercase bg-primary text-primary-foreground px-6 py-2.5 rounded-full hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02]"
+            className={`text-[13px] tracking-wide uppercase px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-[1.02] ${
+              scrolled
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "bg-primary-foreground text-primary hover:bg-primary-foreground/90"
+            }`}
           >
             WhatsApp
           </a>
         </div>
 
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-foreground p-1">
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className={`md:hidden p-1 transition-colors duration-300 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+        >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>

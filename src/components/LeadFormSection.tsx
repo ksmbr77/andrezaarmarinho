@@ -34,17 +34,17 @@ const LeadFormSection = () => {
     <section id="orcamento" className="relative" ref={ref}>
       <div className="section-divider" />
 
-      <div className="px-6 py-24 md:py-32 lg:py-40">
+      <div className="px-4 sm:px-6 py-16 sm:py-24 md:py-32 lg:py-40">
         <div className={`max-w-xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
           <div className="text-center mb-14 md:mb-16">
             <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 mb-5">Orçamento Rápido</p>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               O que você precisa?
             </h2>
             <p className="text-muted-foreground text-sm md:text-base">Responda em segundos e fale direto com a Andreza no WhatsApp.</p>
           </div>
 
-          <div className="border border-border/50 rounded-3xl p-6 md:p-10 shadow-sm">
+          <div className="border border-border/50 rounded-3xl p-5 sm:p-6 md:p-10 shadow-sm">
             {/* Progress */}
             <div className="flex gap-2 mb-10">
               {[0, 1, 2].map((s) => (
