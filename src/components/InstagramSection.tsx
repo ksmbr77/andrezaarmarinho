@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Instagram, Play, Pause } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
 const videos = [
@@ -11,7 +11,7 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [interacting, setInteracting] = useState(false);
+  
 
   useEffect(() => {
     const el = ref.current;
@@ -42,28 +42,10 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
           loading="lazy"
           allow="autoplay; encrypted-media"
           onLoad={() => setLoaded(true)}
-          style={{ pointerEvents: interacting ? 'auto' : 'none' }}
+          style={{ pointerEvents: 'auto' }}
         />
       )}
 
-      {loaded && (
-        <>
-          {!interacting && (
-            <div className="absolute inset-0 z-10 bg-black/5 transition-opacity duration-300" />
-          )}
-          <button
-            onClick={() => setInteracting((prev) => !prev)}
-            className="absolute bottom-5 right-5 z-20 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-xl shadow-primary/40 transition-all duration-300 hover:scale-110 active:scale-95"
-            aria-label={interacting ? "Pausar vídeo" : "Reproduzir vídeo"}
-          >
-            {interacting ? (
-              <Pause size={22} fill="currentColor" strokeWidth={0} />
-            ) : (
-              <Play size={22} fill="currentColor" strokeWidth={0} className="ml-0.5" />
-            )}
-          </button>
-        </>
-      )}
 
       {(!show || !loaded) && (
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-card to-primary/[0.04]">
