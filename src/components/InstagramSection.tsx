@@ -7,31 +7,15 @@ const videos = [
   { url: "https://www.instagram.com/p/DVJDyR8jo-T/embed", title: "Andreza Armarinho - Vídeo 2" },
 ];
 
-const LazyIframe = ({ url, title }: { url: string; title: string }) => {
+const ClickToLoadIframe = ({ url, title }: { url: string; title: string }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [show, setShow] = useState(false);
+  const [activated, setActivated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [interacting, setInteracting] = useState(false);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setShow(true);
-          obs.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
   return (
     <div ref={ref} className="w-full h-full relative group">
-      {show && (
+      {activated && (
         <iframe
           src={url}
           title={title}
@@ -46,11 +30,11 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
         />
       )}
 
-      {/* Overlay + Play/Pause button */}
-      {loaded && (
+      {/* Play/Pause toggle after loaded */}
+      {activated && loaded && (
         <>
           {!interacting && (
-            <div className="absolute inset-0 z-10 bg-black/5 backdrop-blur-[1px] transition-opacity duration-300" />
+            <div className="absolute inset-0 z-10 bg-black/5 transition-opacity duration-300" />
           )}
           <button
             onClick={() => setInteracting((prev) => !prev)}
@@ -66,7 +50,24 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
         </>
       )}
 
-      {(!show || !loaded) && (
+      {/* Click-to-load placeholder */}
+      {!activated && (
+        <button
+          onClick={() => setActivated(true)}
+          className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-card to-primary/[0.04] cursor-pointer group/play"
+          aria-label={`Carregar ${title}`}
+        >
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/30 transition-transform duration-300 group-hover/play:scale-110">
+              <Play size={28} className="text-primary-foreground ml-1" fill="currentColor" strokeWidth={0} />
+            </div>
+            <span className="text-muted-foreground text-xs tracking-wide">Toque para carregar</span>
+          </div>
+        </button>
+      )}
+
+      {/* Loading state after click */}
+      {activated && !loaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-card to-primary/[0.04]">
           <div className="flex flex-col items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center animate-pulse">
@@ -105,7 +106,7 @@ const InstagramSection = () => {
                 key={video.url}
                 className="rounded-2xl overflow-hidden border border-primary/30 bg-card shadow-xl shadow-primary/10 aspect-[4/5] md:aspect-[3/4] min-h-[350px] sm:min-h-[400px] md:min-h-[500px]"
               >
-                <LazyIframe url={video.url} title={video.title} />
+                <ClickToLoadIframe url={video.url} title={video.title} />
               </div>
             ))}
           </div>

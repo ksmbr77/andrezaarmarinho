@@ -27,7 +27,7 @@ const Index = () => {
           document.getElementById('hero')?.scrollIntoView();
         });
       }, 500);
-    }, 1200);
+    }, 600);
     return () => clearTimeout(timer);
   }, []);
 

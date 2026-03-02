@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/90 backdrop-blur-xl border-b border-border/20" : "bg-transparent"
+        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border/20" : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4 md:py-5">
@@ -71,7 +71,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`md:hidden bg-background/98 backdrop-blur-xl border-t border-border/30 overflow-hidden transition-all duration-300 ${
+        className={`md:hidden bg-background/98 backdrop-blur-md border-t border-border/30 overflow-hidden transition-all duration-300 ${
           mobileOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >

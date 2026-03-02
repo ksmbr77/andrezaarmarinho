@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.cdnfonts.com/css/lemon-milk');
 
 /* GPU compositing for smooth scrolling */
 @layer base {
@@ -199,5 +198,13 @@
     transform-origin: left;
     animation: scale-x 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     transform: scaleX(0);
+  }
+}
+
+/* Reduce animations on mobile / reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse, .animate-pulse-glow, .animate-whatsapp-pulse,
+  .animate-gentle-bounce, .animate-float, .animate-shimmer {
+    animation: none !important;
   }
 }
