@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
             {highlights.map((h) => (
               <div
                 key={h.title}
-                className="group flex items-start gap-5 bg-foreground/[0.04] border border-border/30 rounded-2xl px-7 py-6 hover:bg-primary/[0.06] hover:border-primary/25 transition-all duration-300 cursor-default"
+                className="group flex items-start gap-5 bg-muted border border-border/50 rounded-2xl px-7 py-6 hover:bg-primary/[0.04] hover:border-primary/25 transition-all duration-300 cursor-default"
               >
                 <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-primary/20 group-hover:border-primary/30 transition-colors duration-300">
                   <h.icon size={20} className="text-primary" strokeWidth={1.5} />
