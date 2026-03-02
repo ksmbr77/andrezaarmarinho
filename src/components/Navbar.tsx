@@ -30,7 +30,7 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4 md:py-5">
         <a href="#hero" className="flex-shrink-0">
-          <img src={logoFull} alt="Andreza Armarinho" className="h-16 md:h-20" />
+          <img src={logoFull} alt="Andreza Armarinho" className="h-12 md:h-16 lg:h-20" />
         </a>
 
         <div className="hidden md:flex items-center gap-10">

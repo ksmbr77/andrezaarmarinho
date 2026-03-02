@@ -32,7 +32,7 @@ const LeadFormSection = () => {
 
   return (
     <section id="orcamento" className="relative" ref={ref}>
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="section-divider" />
 
       <div className="px-6 py-24 md:py-32 lg:py-40">
         <div className={`max-w-xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
@@ -44,7 +44,7 @@ const LeadFormSection = () => {
             <p className="text-muted-foreground text-sm md:text-base">Responda em segundos e fale direto com a Andreza no WhatsApp.</p>
           </div>
 
-          <div className="border border-border/30 rounded-3xl p-8 md:p-10">
+          <div className="border border-border/50 rounded-3xl p-6 md:p-10 shadow-sm">
             {/* Progress */}
             <div className="flex gap-2 mb-10">
               {[0, 1, 2].map((s) => (
@@ -120,7 +120,7 @@ const LeadFormSection = () => {
                 <button
                   onClick={() => canProceed && setStep((s) => s + 1)}
                   disabled={!canProceed}
-                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-primary/20"
+                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-primary/20"
                 >
                   Próximo <ArrowRight size={14} />
                 </button>

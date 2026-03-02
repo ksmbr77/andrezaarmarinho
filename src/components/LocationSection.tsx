@@ -8,7 +8,7 @@ const LocationSection = () => {
 
   return (
     <section id="contato" className="relative" ref={ref}>
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="section-divider" />
 
       <div className="px-6 py-24 md:py-32 lg:py-40">
         <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>

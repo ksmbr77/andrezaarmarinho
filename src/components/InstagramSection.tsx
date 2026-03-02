@@ -43,7 +43,7 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
         />
       )}
       {(!show || !loaded) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-card/80">
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-card to-primary/[0.04]">
           <div className="flex flex-col items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center animate-pulse">
               <Instagram size={22} className="text-primary-foreground" />
@@ -61,7 +61,7 @@ const InstagramSection = () => {
 
   return (
     <section className="relative" ref={ref}>
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="section-divider" />
 
       <div className="px-6 py-24 md:py-32 lg:py-40">
         <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
@@ -79,7 +79,7 @@ const InstagramSection = () => {
             {videos.map((video) => (
               <div
                 key={video.url}
-                className="rounded-2xl overflow-hidden border border-primary/15 bg-card shadow-lg shadow-primary/5 aspect-[4/5] md:aspect-[3/4]"
+                className="rounded-2xl overflow-hidden border border-primary/30 bg-card shadow-xl shadow-primary/10 aspect-[4/5] md:aspect-[3/4] min-h-[400px] md:min-h-[500px]"
               >
                 <LazyIframe url={video.url} title={video.title} />
               </div>

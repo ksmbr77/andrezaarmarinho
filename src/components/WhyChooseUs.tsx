@@ -14,7 +14,7 @@ const WhyChooseUs = () => {
 
   return (
     <section id="diferenciais" className="relative" ref={ref}>
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="section-divider" />
 
       <div className="px-6 py-24 md:py-32 lg:py-40">
         <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
@@ -23,18 +23,19 @@ const WhyChooseUs = () => {
             <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
               Por que a <span className="text-primary">Andreza</span>?
             </h2>
-            <p className="text-muted-foreground text-base md:text-lg max-w-lg mx-auto leading-relaxed">
+            <p className="text-muted-foreground text-sm md:text-lg max-w-lg mx-auto leading-relaxed">
               Mais do que um armarinho — somos parceiras da sua produção com produtos de qualidade comprovada.
             </p>
           </div>
 
           <div className="max-w-2xl mx-auto space-y-4">
-            {highlights.map((h) => (
+            {highlights.map((h, i) => (
               <div
                 key={h.title}
-                className="group flex items-start gap-5 bg-card border border-border/50 rounded-2xl px-7 py-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 cursor-default"
+                className="group flex items-start gap-5 bg-card border border-border/50 border-l-[3px] border-l-primary/30 rounded-2xl px-7 py-6 hover:border-primary/30 hover:border-l-primary/70 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 cursor-default"
+                style={{ animationDelay: `${i * 100}ms` }}
               >
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:from-primary/25 group-hover:to-primary/10 group-hover:border-primary/30 transition-all duration-300">
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/20 to-primary/8 border border-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:from-primary/30 group-hover:to-primary/15 group-hover:border-primary/40 transition-all duration-300">
                   <h.icon size={20} className="text-primary" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -47,7 +48,7 @@ const WhyChooseUs = () => {
         </div>
       </div>
 
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="section-divider" />
     </section>
   );
 };

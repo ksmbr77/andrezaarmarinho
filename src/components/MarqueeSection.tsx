@@ -16,7 +16,7 @@ const MarqueeSection = () => {
           {items.map((phrase, i) => (
             <span
               key={`a-${i}`}
-              className="text-foreground/[0.65] text-4xl md:text-6xl font-heading font-bold tracking-wide select-none"
+              className="text-foreground/[0.65] text-3xl md:text-6xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
               <span className="text-primary/[0.65] mx-4 md:mx-6">·</span>
@@ -31,7 +31,7 @@ const MarqueeSection = () => {
           {items.map((phrase, i) => (
             <span
               key={`b-${i}`}
-              className="text-primary/[0.65] text-4xl md:text-6xl font-heading font-bold tracking-wide select-none"
+              className="text-primary/[0.65] text-3xl md:text-6xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
               <span className="text-foreground/[0.65] mx-4 md:mx-6">·</span>

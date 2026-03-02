@@ -10,16 +10,16 @@ const HeroSection = () => {
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-background" />
       
-      {/* Subtle glow for light theme */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/[0.04] rounded-full blur-[120px] will-change-transform" />
+      {/* Red glow — stronger */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/[0.08] rounded-full blur-[120px] will-change-transform" />
 
-      {/* Grid — subtle on white */}
+      {/* Grid */}
       <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: 'linear-gradient(hsl(0 0% 0% / 0.08) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 0% / 0.08) 1px, transparent 1px)',
         backgroundSize: '60px 60px'
       }} />
 
-      {/* Vignette — light fade */}
+      {/* Vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_80%)]" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
@@ -30,7 +30,7 @@ const HeroSection = () => {
           transition={{ ...transition, delay: 0.2 }}
           className="mb-10"
         >
-          <span className="inline-flex items-center gap-2.5 border border-primary/20 bg-primary/[0.05] rounded-full px-5 py-2.5 text-[11px] md:text-[12px] tracking-[0.15em] text-foreground/70">
+          <span className="inline-flex items-center gap-2.5 border border-primary/40 bg-primary/[0.08] rounded-full px-5 py-2.5 text-[11px] md:text-[12px] tracking-[0.15em] text-foreground/70">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             O Maior Armarinho de Sergipe
           </span>
@@ -41,14 +41,14 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: 0.35 }}
-          className="font-heading text-[3.2rem] md:text-[5rem] lg:text-[6.5rem] font-bold leading-[1.02] mb-8 tracking-[-0.02em]"
+          className="font-heading text-[2.2rem] sm:text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-bold leading-[1.02] mb-8 tracking-[-0.02em]"
         >
           Sua Produção
           <br />
           Começa{" "}
           <span className="relative inline-block text-primary">
             Aqui
-            <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-primary rounded-full animate-fade-in" style={{ animationDelay: '1s' }} />
+            <span className="absolute -bottom-2 left-[-5%] w-[110%] h-[4px] bg-primary rounded-full animate-fade-in" style={{ animationDelay: '1s', boxShadow: '0 0 12px hsl(0 100% 40% / 0.3)' }} />
           </span>
         </motion.h1>
 
@@ -57,18 +57,18 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: 0.5 }}
-          className="text-muted-foreground text-base md:text-xl max-w-lg mx-auto mb-6 leading-relaxed"
+          className="text-muted-foreground text-sm sm:text-base md:text-xl max-w-lg mx-auto mb-6 leading-relaxed"
         >
           Tudo para sua produção artesanal e industrial.
           <br className="hidden md:block" />
           Qualidade, variedade e os melhores preços do mercado.
         </motion.p>
 
-        {/* Trust line */}
+        {/* Decorative red line */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ ...transition, delay: 0.65 }}
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ ...transition, delay: 0.6 }}
           className="flex items-center justify-center gap-3 mb-14"
         >
           <span className="w-8 h-[1px] bg-primary/30" />
@@ -87,7 +87,7 @@ const HeroSection = () => {
         >
           <a
             href="#catalogo"
-            className="group inline-flex items-center justify-center gap-2.5 bg-primary text-primary-foreground rounded-full px-9 py-4 text-sm font-medium tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+            className="group inline-flex items-center justify-center gap-2.5 bg-primary text-primary-foreground rounded-full px-9 py-4 text-sm font-medium tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
           >
             Ver Catálogo
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -104,8 +104,8 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator — CSS only */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
+      {/* Scroll indicator — gentle bounce */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-gentle-bounce">
         <ArrowDown size={18} className="text-muted-foreground" />
       </div>
     </section>
