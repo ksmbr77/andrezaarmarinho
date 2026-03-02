@@ -13,9 +13,19 @@ const testimonials = [
 const TestimonialsSection = () => {
   const { ref, visible } = useFadeIn();
   const [current, setCurrent] = useState(0);
+  const [animating, setAnimating] = useState(false);
 
-  const prev = () => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1));
-  const next = () => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1));
+  const changeTo = (index: number) => {
+    if (animating || index === current) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setCurrent(index);
+      setAnimating(false);
+    }, 200);
+  };
+
+  const prev = () => changeTo(current === 0 ? testimonials.length - 1 : current - 1);
+  const next = () => changeTo(current === testimonials.length - 1 ? 0 : current + 1);
 
   const t = testimonials[current];
 
@@ -33,29 +43,31 @@ const TestimonialsSection = () => {
             ))}
           </div>
 
-          <p className="font-heading text-base sm:text-lg md:text-2xl lg:text-3xl leading-relaxed mb-10 text-foreground/90">
-            "{t.text}"
-          </p>
+          <div className={`transition-all duration-300 ${animating ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
+            <p className="font-heading text-base sm:text-lg md:text-2xl lg:text-3xl leading-relaxed mb-10 text-foreground/90">
+              "{t.text}"
+            </p>
 
-          <p className="text-sm font-medium tracking-wide">{t.name}</p>
-          <p className="text-muted-foreground text-xs mt-1.5 tracking-wide">{t.location}</p>
+            <p className="text-sm font-medium tracking-wide">{t.name}</p>
+            <p className="text-muted-foreground text-xs mt-1.5 tracking-wide">{t.location}</p>
+          </div>
 
           <div className="flex justify-center items-center gap-6 mt-12">
-            <button onClick={prev} className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
+            <button onClick={prev} className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 active:scale-90">
               <ChevronLeft size={16} className="text-muted-foreground" />
             </button>
             <div className="flex items-center gap-2">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setCurrent(i)}
+                  onClick={() => changeTo(i)}
                   className={`rounded-full transition-all duration-300 ${
-                    i === current ? "bg-primary w-6 h-1.5" : "bg-muted-foreground/20 w-1.5 h-1.5"
+                    i === current ? "bg-primary w-6 h-1.5" : "bg-muted-foreground/20 w-1.5 h-1.5 hover:bg-muted-foreground/40"
                   }`}
                 />
               ))}
             </div>
-            <button onClick={next} className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
+            <button onClick={next} className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 active:scale-90">
               <ChevronRight size={16} className="text-muted-foreground" />
             </button>
           </div>
