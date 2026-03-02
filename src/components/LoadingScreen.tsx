@@ -1,36 +1,25 @@
-import { motion } from "framer-motion";
 import logoIcon from "@/assets/logo-icon.png";
 
-const LoadingScreen = () => {
+interface LoadingScreenProps {
+  onExit?: boolean;
+}
+
+const LoadingScreen = ({ onExit }: LoadingScreenProps) => {
   return (
-    <motion.div
-      className="fixed inset-0 z-[100] bg-background flex items-center justify-center"
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+    <div
+      className={`fixed inset-0 z-[100] bg-background flex items-center justify-center transition-opacity duration-500 ${onExit ? "opacity-0" : "opacity-100"}`}
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="text-center"
-      >
-        <motion.img
+      <div className="text-center animate-fade-in">
+        <img
           src={logoIcon}
           alt="Andreza Armarinho"
-          className="w-16 h-16 mx-auto mb-6"
-          initial={{ opacity: 0, rotateY: -90 }}
-          animate={{ opacity: 1, rotateY: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          style={{ perspective: 600 }}
+          className="w-16 h-16 mx-auto mb-6 animate-fade-in"
         />
-        <motion.div
-          className="w-16 h-[1px] bg-primary mx-auto"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        <div
+          className="w-16 h-[1px] bg-primary mx-auto origin-left animate-scale-x"
         />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 

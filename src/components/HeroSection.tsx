@@ -1,9 +1,6 @@
-import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Vim pelo site e gostaria de mais informações.";
-
-const transition = { duration: 0.8, ease: [0.16, 1, 0.3, 1] };
 
 const HeroSection = () => {
   return (
@@ -22,24 +19,17 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: 0.2 }}
-          className="mb-10"
-        >
+        <div className="mb-10 animate-hero-fade-in" style={{ animationDelay: '0.2s' }}>
           <span className="inline-flex items-center gap-2.5 border border-primary-foreground/40 bg-primary-foreground/15 rounded-lg px-5 py-2.5 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.15em] text-primary-foreground font-medium backdrop-blur-sm shadow-lg shadow-black/10 animate-pulse-glow">
             <span className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
             O Maior Armarinho de Sergipe
           </span>
-        </motion.div>
+        </div>
 
         {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: 0.35 }}
-          className="font-heading text-[2.2rem] sm:text-[3rem] md:text-[5rem] lg:text-[5.5rem] font-bold leading-[1.02] mb-8 tracking-[-0.02em] text-primary-foreground"
+        <h1
+          className="font-heading text-[2.2rem] sm:text-[3rem] md:text-[5rem] lg:text-[5.5rem] font-bold leading-[1.02] mb-8 tracking-[-0.02em] text-primary-foreground animate-hero-fade-in"
+          style={{ animationDelay: '0.35s' }}
         >
           Sua Produção
           <br />
@@ -48,40 +38,34 @@ const HeroSection = () => {
             Aqui
             <span className="absolute -bottom-2 left-[-5%] w-[110%] h-[4px] bg-primary-foreground rounded-full animate-fade-in" style={{ animationDelay: '1s', boxShadow: '0 0 12px hsl(0 0% 100% / 0.3)' }} />
           </span>
-        </motion.h1>
+        </h1>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: 0.5 }}
-          className="text-primary-foreground/80 text-sm sm:text-base md:text-xl max-w-lg mx-auto mb-6 leading-relaxed"
+        <p
+          className="text-primary-foreground/80 text-sm sm:text-base md:text-xl max-w-lg mx-auto mb-6 leading-relaxed animate-hero-fade-in"
+          style={{ animationDelay: '0.5s' }}
         >
           Tudo para sua produção artesanal e industrial.
           <br className="hidden md:block" />
           Qualidade, variedade e os melhores preços do mercado.
-        </motion.p>
+        </p>
 
         {/* Decorative line */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ ...transition, delay: 0.6 }}
-          className="flex items-center justify-center gap-3 mb-14"
+        <div
+          className="flex items-center justify-center gap-3 mb-14 animate-hero-fade-in"
+          style={{ animationDelay: '0.6s' }}
         >
           <span className="w-8 h-[1px] bg-primary-foreground/30" />
           <p className="text-primary-foreground/50 text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
             3x Armarinho Destaque &nbsp;·&nbsp; Entregas para todo o Brasil
           </p>
           <span className="w-8 h-[1px] bg-primary-foreground/30" />
-        </motion.div>
+        </div>
 
         {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+        <div
+          className="flex flex-col sm:flex-row gap-4 justify-center animate-hero-fade-in"
+          style={{ animationDelay: '0.8s' }}
         >
           <a
             href="#catalogo"
@@ -99,7 +83,7 @@ const HeroSection = () => {
             <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse" />
             Falar no WhatsApp
           </a>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
