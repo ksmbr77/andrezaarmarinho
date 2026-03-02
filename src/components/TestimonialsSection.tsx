@@ -40,26 +40,23 @@ const TestimonialsSection = () => {
           <p className="text-sm font-medium tracking-wide">{t.name}</p>
           <p className="text-muted-foreground text-xs mt-1.5 tracking-wide">{t.location}</p>
 
-          <div className="flex justify-center items-center gap-6 mt-12" role="group" aria-label="Navegação de depoimentos">
-            <button onClick={prev} aria-label="Depoimento anterior" className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
-              <ChevronLeft size={16} className="text-muted-foreground" aria-hidden="true" />
+          <div className="flex justify-center items-center gap-6 mt-12">
+            <button onClick={prev} className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
+              <ChevronLeft size={16} className="text-muted-foreground" />
             </button>
-            <div className="flex items-center gap-2" role="tablist" aria-label="Selecionar depoimento">
+            <div className="flex items-center gap-2">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  role="tab"
-                  aria-selected={i === current}
-                  aria-label={`Depoimento ${i + 1} de ${testimonials.length}`}
                   className={`rounded-full transition-all duration-300 ${
                     i === current ? "bg-primary w-6 h-1.5" : "bg-muted-foreground/20 w-1.5 h-1.5"
                   }`}
                 />
               ))}
             </div>
-            <button onClick={next} aria-label="Próximo depoimento" className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
-              <ChevronRight size={16} className="text-muted-foreground" aria-hidden="true" />
+            <button onClick={next} className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
+              <ChevronRight size={16} className="text-muted-foreground" />
             </button>
           </div>
         </div>

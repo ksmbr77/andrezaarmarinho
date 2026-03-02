@@ -44,9 +44,9 @@ const LeadFormSection = () => {
             <p className="text-muted-foreground text-sm md:text-base">Responda em segundos e fale direto com a Andreza no WhatsApp.</p>
           </div>
 
-          <form onSubmit={(e) => e.preventDefault()} className="border-2 border-primary/30 rounded-xl p-5 sm:p-6 md:p-10 shadow-sm">
+          <div className="border-2 border-primary/30 rounded-xl p-5 sm:p-6 md:p-10 shadow-sm">
             {/* Progress */}
-            <div className="flex gap-2 mb-10" role="progressbar" aria-valuenow={step + 1} aria-valuemin={1} aria-valuemax={3} aria-label={`Etapa ${step + 1} de 3`}>
+            <div className="flex gap-2 mb-10">
               {[0, 1, 2].map((s) => (
                 <div
                   key={s}
@@ -58,15 +58,13 @@ const LeadFormSection = () => {
             {/* Step 0 */}
             {step === 0 && (
               <div className="animate-fade-in">
-                <label htmlFor="lead-name" className="text-sm text-muted-foreground mb-4 block">Qual é o seu nome?</label>
+                <label className="text-sm text-muted-foreground mb-4 block">Qual é o seu nome?</label>
                 <input
-                  id="lead-name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Seu nome"
                   maxLength={100}
-                  autoComplete="name"
                   className="w-full bg-transparent border-b border-border pb-3 text-lg focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/40"
                   autoFocus
                 />
@@ -75,15 +73,13 @@ const LeadFormSection = () => {
 
             {/* Step 1 */}
             {step === 1 && (
-              <fieldset className="animate-fade-in">
-                <legend className="text-sm text-muted-foreground mb-6 block">O que você procura?</legend>
-                <div className="flex flex-wrap gap-3" role="group">
+              <div className="animate-fade-in">
+                <label className="text-sm text-muted-foreground mb-6 block">O que você procura?</label>
+                <div className="flex flex-wrap gap-3">
                   {interests.map((item) => (
                     <button
                       key={item}
-                      type="button"
                       onClick={() => toggleInterest(item)}
-                      aria-pressed={selected.includes(item)}
                       className={`px-5 py-2.5 rounded-lg text-sm border transition-all duration-300 ${
                         selected.includes(item)
                           ? "bg-primary text-primary-foreground border-primary"
@@ -94,15 +90,14 @@ const LeadFormSection = () => {
                     </button>
                   ))}
                 </div>
-              </fieldset>
+              </div>
             )}
 
             {/* Step 2 */}
             {step === 2 && (
               <div className="animate-fade-in">
-                <label htmlFor="lead-details" className="text-sm text-muted-foreground mb-4 block">Algum detalhe adicional? (opcional)</label>
+                <label className="text-sm text-muted-foreground mb-4 block">Algum detalhe adicional? (opcional)</label>
                 <textarea
-                  id="lead-details"
                   value={details}
                   onChange={(e) => setDetails(e.target.value)}
                   placeholder="Ex.: Preciso de 50m de tecido liso..."
@@ -116,31 +111,29 @@ const LeadFormSection = () => {
             {/* Actions */}
             <div className="flex items-center justify-between mt-10">
               {step > 0 ? (
-                <button type="button" onClick={() => setStep((s) => s - 1)} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <button onClick={() => setStep((s) => s - 1)} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   ← Voltar
                 </button>
               ) : <div />}
 
               {step < 2 ? (
                 <button
-                  type="button"
                   onClick={() => canProceed && setStep((s) => s + 1)}
                   disabled={!canProceed}
                   className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 disabled:bg-primary/50 disabled:text-primary-foreground/70 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-primary/20"
                 >
-                  Próximo <ArrowRight size={14} aria-hidden="true" />
+                  Próximo <ArrowRight size={14} />
                 </button>
               ) : (
                 <button
-                  type="button"
                   onClick={handleSubmit}
                   className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
                 >
-                  Enviar no WhatsApp <ArrowRight size={14} aria-hidden="true" />
+                  Enviar no WhatsApp <ArrowRight size={14} />
                 </button>
               )}
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>

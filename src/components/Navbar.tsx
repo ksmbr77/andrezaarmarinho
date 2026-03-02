@@ -23,7 +23,6 @@ const Navbar = () => {
 
   return (
     <nav
-      aria-label="Navegação principal"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "bg-background/90 backdrop-blur-xl border-b border-border/20" : "bg-transparent"
       }`}
@@ -65,11 +64,9 @@ const Navbar = () => {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={mobileOpen}
           className={`md:hidden p-1 transition-colors duration-300 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
         >
-          {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
