@@ -1,140 +1,147 @@
 
+# Corrigir Responsividade e Alinhar Cores do Site
 
-# Corrigir Erros, Destacar Vermelho, Instagram e Melhorar UX
-
-## Resumo
-
-Corrigir problemas visuais no tema claro, intensificar o vermelho da marca em todos os componentes, garantir que o Instagram funcione e fique bonito, melhorar a Hero Section, ajustar responsividade mobile e adicionar animacoes CSS leves para dar charme ao site.
+## Problema Principal
+A Navbar tem logo e links em cor escura sobre o fundo vermelho do Hero, ficando quase invisivel. Alem disso, varios componentes precisam de ajustes de responsividade em mobile e desktop.
 
 ---
 
-## 1. Background -- sair do branco puro
+## 1. Navbar -- cores alinhadas ao hero vermelho
 
-O fundo `0 0% 100%` (branco puro) e muito "cru". Vamos mudar para um off-white quente com toque levemente rosado que complementa o vermelho:
+A navbar precisa detectar que esta sobre o hero vermelho e usar cores brancas:
 
-- `--background`: `0 0% 100%` para `0 0% 99%` (off-white sutil)
-- `--card`: `0 0% 98%` para `0 0% 97%`
-- Adicionar um gradiente radial vermelho muito sutil no body via CSS (`radial-gradient` fixo no background)
+- Quando `scrolled = false` (no topo/hero): links em `text-primary-foreground` (branco), icone hamburger branco, logo com filtro `brightness(0) invert(1)` para ficar branca
+- Quando `scrolled = true` (rolou): manter como esta, com `bg-background/90` e links escuros
+- Mobile menu: manter bg claro com links escuros (ja esta ok)
+- Logo: `h-10 md:h-14 lg:h-16` (menor e mais proporcional)
 
-**Arquivo**: `src/index.css`
+**Arquivo**: `src/components/Navbar.tsx`
 
 ---
 
-## 2. Hero Section -- mais impactante
+## 2. Hero Section -- responsividade
 
-- Glow vermelho: aumentar de `bg-primary/[0.04]` para `bg-primary/[0.08]`, tamanho de `w-[600px] h-[400px]` para `w-[800px] h-[600px]`
-- Badge: borda de `border-primary/20` para `border-primary/40`, bg de `bg-primary/[0.05]` para `bg-primary/[0.08]`
-- Linha vermelha abaixo de "Aqui": de `h-[3px]` para `h-[4px]` e largura `w-[110%]` com efeito glow
-- Adicionar faixa decorativa vermelha fina entre o subtitulo e os CTAs
-- Responsividade: headline mobile de `text-[3.2rem]` para `text-[2.4rem]` para nao estourar em telas pequenas
-- CTA "Ver Catalogo": adicionar `animate-pulse-glow` sutil no hover
+- Desktop: reduzir headline de `lg:text-[6.5rem]` para `lg:text-[5.5rem]` para nao quebrar em 3 linhas
+- Mobile: manter `text-[2.2rem]` que esta ok
+- CTAs mobile: garantir `w-full sm:w-auto` para botoes ficarem full-width no mobile e inline no desktop
+- Badge: `text-[10px] sm:text-[11px]` para mobile
+- Padding: `px-4 sm:px-6` para mais espaco lateral no mobile pequeno
 
 **Arquivo**: `src/components/HeroSection.tsx`
 
 ---
 
-## 3. Cards de Categoria -- vermelho destacado
+## 3. Marquee Section -- responsividade
 
-- Adicionar `bg-white shadow-sm` nos cards para separa-los do fundo
-- Borda: `border-border/40` para `border-border` com `hover:border-primary/50`
-- Borda inferior vermelha animada: `border-b-2 border-b-transparent group-hover:border-b-primary/60`
-- Icone container: bg mais forte `bg-primary/12` com `group-hover:bg-primary/20`
-- Responsividade: padding `p-8` para `p-6 md:p-8` em mobile
+- Texto mobile: `text-2xl sm:text-3xl md:text-6xl` (menor em telas muito pequenas)
+- Gaps: `gap-4 sm:gap-6 md:gap-10`
+
+**Arquivo**: `src/components/MarqueeSection.tsx`
+
+---
+
+## 4. Categories Section -- responsividade
+
+- Grid mobile: `grid-cols-2` com `gap-3 sm:gap-4 md:gap-6`
+- Cards padding: `p-4 sm:p-5 md:p-8`
+- Icone container: `w-12 h-12 sm:w-14 sm:h-14` para proporcionalidade
+- Titulo da secao: `text-2xl sm:text-3xl md:text-5xl lg:text-6xl`
+- Placeholder "espaco reservado": padding `p-6 sm:p-8 md:p-16`
 
 **Arquivo**: `src/components/CategoriesSection.tsx`
 
 ---
 
-## 4. Instagram Section -- corrigir visibilidade
+## 5. WhyChooseUs -- responsividade
 
-Os iframes do Instagram provavelmente nao carregam no preview do Lovable por restricoes de iframe. Vamos:
-
-- Adicionar `min-h-[450px] md:min-h-[550px]` nos containers para garantir espaco
-- Borda vermelha mais forte: `border-primary/15` para `border-primary/30`
-- Shadow: `shadow-lg shadow-primary/5` para `shadow-xl shadow-primary/10`
-- Loading state: gradiente vermelho sutil no fundo do placeholder
-- Responsividade: `aspect-[4/5]` no mobile, `aspect-[3/4]` no desktop -- esta ok, mas adicionar min-height
-
-**Arquivo**: `src/components/InstagramSection.tsx`
-
----
-
-## 5. WhyChooseUs -- cards com vermelho
-
-- Borda esquerda vermelha: `border-l-[3px] border-l-primary/25 hover:border-l-primary/60`
-- Shadow no hover: `hover:shadow-xl hover:shadow-primary/8`
-- Icone box: gradiente mais forte `from-primary/20 to-primary/8`
-- Animacao: cards aparecem com stagger (delay entre cada um) usando CSS `animation-delay`
+- Cards padding: `px-5 py-5 sm:px-7 sm:py-6`
+- Titulo: `text-2xl sm:text-3xl md:text-5xl lg:text-6xl`
+- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
 
 **Arquivo**: `src/components/WhyChooseUs.tsx`
 
 ---
 
-## 6. LeadFormSection -- botao desbotado
+## 6. Instagram Section -- responsividade
 
-- Mudar `disabled:opacity-20` para `disabled:opacity-40` no botao "Proximo"
-- Borda do form container: `border-border/30` para `border-border/50` para mais visibilidade
-- Adicionar sombra vermelha sutil no container: `shadow-sm`
+- Video containers: `min-h-[350px] sm:min-h-[400px] md:min-h-[500px]`
+- Titulo: `text-2xl sm:text-3xl md:text-5xl`
+- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
+
+**Arquivo**: `src/components/InstagramSection.tsx`
+
+---
+
+## 7. Testimonials -- responsividade
+
+- Texto depoimento: `text-base sm:text-lg md:text-2xl lg:text-3xl`
+- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
+
+**Arquivo**: `src/components/TestimonialsSection.tsx`
+
+---
+
+## 8. OffersBanner -- responsividade
+
+- Padding interno: `p-6 sm:p-8 md:p-16 lg:p-20`
+- Titulo: `text-2xl sm:text-3xl md:text-5xl`
+
+**Arquivo**: `src/components/OffersBanner.tsx`
+
+---
+
+## 9. LeadForm -- responsividade
+
+- Container padding: `p-5 sm:p-6 md:p-10`
+- Titulo: `text-2xl sm:text-3xl md:text-4xl lg:text-5xl`
+- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
 
 **Arquivo**: `src/components/LeadFormSection.tsx`
 
 ---
 
-## 7. Animacoes CSS novas para charme
+## 10. Location Section -- responsividade
 
-Adicionar ao `tailwind.config.ts` e `index.css`:
+- Map height mobile: `h-[250px] sm:h-[280px] md:h-full`
+- Grid gap: `gap-8 sm:gap-12 md:gap-16`
+- Titulo: `text-2xl sm:text-3xl md:text-5xl`
 
-- **shimmer**: efeito de brilho sutil nos separadores vermelhos (gradiente que se move)
-- **gentle-bounce**: bounce mais suave para o scroll indicator do hero
-- Stagger nos cards do WhyChooseUs com `animation-delay` CSS puro (nao Framer Motion)
-- Transicoes mais suaves: todos os hovers com `duration-300` consistente
-
-**Arquivos**: `tailwind.config.ts`, `src/index.css`
+**Arquivo**: `src/components/LocationSection.tsx`
 
 ---
 
-## 8. Responsividade mobile
+## 11. Footer -- responsividade e alinhamento
 
-- **Hero headline**: `text-[3.2rem]` para `text-[2.2rem] sm:text-[3rem]` -- evitar overflow
-- **Marquee text**: `text-4xl` para `text-3xl` no mobile
-- **Category cards padding**: `p-8` para `p-5 md:p-8`
-- **Instagram containers**: garantir que nao fiquem cortados no mobile
-- **Testimonials text**: `text-xl` para `text-lg` no mobile
-- **OffersBanner padding**: `p-12` para `p-8 md:p-12`
-- **Navbar logo**: `h-16` para `h-12 md:h-16` -- logo grande demais no mobile
+- Logo height: `h-12 sm:h-16`
+- Credits text: `text-xs sm:text-sm md:text-base`
+- Flex gap columns: `gap-8 sm:gap-16`
+- Mobile: stack tudo em coluna com alinhamento centralizado
 
-**Arquivos**: varios componentes
+**Arquivo**: `src/components/Footer.tsx`
 
 ---
 
-## 9. Separadores vermelhos melhorados
+## 12. App.css -- remover estilos conflitantes
 
-Todos os `h-px ... via-primary/30` entre secoes serao intensificados:
+O `src/App.css` tem `#root { max-width: 1280px; margin: 0 auto; padding: 2rem; text-align: center; }` que pode estar limitando a largura do site e adicionando padding indesejado. Remover ou limpar esses estilos.
 
-- De `via-primary/30` para `via-primary/50`
-- Adicionar `h-[2px]` em vez de `h-px` para ficarem mais visiveis
-- Adicionar a animacao shimmer CSS (brilho sutil que percorre a linha)
+**Arquivo**: `src/App.css`
 
 ---
 
-## Arquivos Modificados
+## Resumo de Arquivos
 
-| Arquivo | Mudancas |
-|---------|----------|
-| `src/index.css` | Background off-white, animacao shimmer, gradiente body |
-| `tailwind.config.ts` | Novas keyframes (shimmer, gentle-bounce) |
-| `src/components/HeroSection.tsx` | Glow maior, badge vermelho, responsividade headline, decoracao |
-| `src/components/CategoriesSection.tsx` | Cards com bg-white, borda vermelha inferior, responsividade |
-| `src/components/InstagramSection.tsx` | Min-height, borda vermelha forte, loading melhorado |
-| `src/components/WhyChooseUs.tsx` | Borda lateral vermelha, stagger animacao, hover vermelho |
-| `src/components/LeadFormSection.tsx` | Botao opacity fix, borda container, shadow |
-| `src/components/MarqueeSection.tsx` | Texto menor no mobile |
-| `src/components/TestimonialsSection.tsx` | Texto responsivo mobile |
-| `src/components/OffersBanner.tsx` | Padding responsivo, shadow |
-| `src/components/Navbar.tsx` | Logo menor no mobile |
-
----
-
-## Resultado Esperado
-
-Site com fundo off-white suave, vermelho da marca destacado em todos os cards e separadores, Instagram visivel com containers adequados, Hero impactante com glow vermelho, animacoes CSS leves e fluidas, e responsividade correta em todas as telas.
+| Arquivo | Mudanca Principal |
+|---------|-------------------|
+| `src/components/Navbar.tsx` | Links/logo brancos sobre hero, escuros ao rolar |
+| `src/components/HeroSection.tsx` | Headline menor desktop, CTAs full-width mobile |
+| `src/components/MarqueeSection.tsx` | Texto menor mobile |
+| `src/components/CategoriesSection.tsx` | Cards/grid responsivos |
+| `src/components/WhyChooseUs.tsx` | Padding/titulo responsivos |
+| `src/components/InstagramSection.tsx` | Min-height e titulo responsivos |
+| `src/components/TestimonialsSection.tsx` | Texto depoimento responsivo |
+| `src/components/OffersBanner.tsx` | Padding interno responsivo |
+| `src/components/LeadFormSection.tsx` | Container/titulo responsivos |
+| `src/components/LocationSection.tsx` | Map e grid responsivos |
+| `src/components/Footer.tsx` | Layout mobile melhorado |
+| `src/App.css` | Remover max-width/padding do #root |
