@@ -30,19 +30,24 @@ const CategoriesSection = () => {
               href={`${WHATSAPP_LINK}?text=${encodeURIComponent(cat.msg)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group border border-border/40 rounded-2xl p-8 md:p-10 text-center transition-all duration-500 hover:border-primary/30 hover:bg-primary/[0.03] hover:shadow-lg hover:shadow-primary/5"
+              className="group relative border border-border/40 rounded-2xl p-8 md:p-10 text-center transition-all duration-500 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden"
             >
-              <cat.icon size={26} className="mx-auto mb-5 text-muted-foreground group-hover:text-primary transition-colors duration-500" strokeWidth={1.5} />
-              <h3 className="text-sm md:text-base font-medium tracking-wide">{cat.name}</h3>
-              <span className="block mt-3 text-primary text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                Ver produtos →
-              </span>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.00] to-primary/[0.00] group-hover:from-primary/[0.06] group-hover:to-primary/[0.02] transition-all duration-500" />
+              <div className="relative">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/15 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-500">
+                  <cat.icon size={24} className="text-primary" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-sm md:text-base font-medium tracking-wide group-hover:text-primary transition-colors duration-300">{cat.name}</h3>
+                <span className="block mt-3 text-primary text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                  Ver produtos →
+                </span>
+              </div>
             </a>
           ))}
         </div>
 
-        <div className="mt-16 md:mt-20 border border-dashed border-border/30 rounded-2xl p-12 md:p-16 text-center">
-          <p className="text-muted-foreground/40 text-sm tracking-wide">Espaço reservado para o catálogo completo</p>
+        <div className="mt-16 md:mt-20 border border-dashed border-primary/20 rounded-2xl p-12 md:p-16 text-center bg-primary/[0.02]">
+          <p className="text-muted-foreground/50 text-sm tracking-wide">Espaço reservado para o catálogo completo</p>
         </div>
       </div>
     </section>

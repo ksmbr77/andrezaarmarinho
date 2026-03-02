@@ -10,22 +10,22 @@ const OffersBanner = () => {
       <div
         className={`max-w-4xl mx-auto relative overflow-hidden rounded-3xl transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.08] via-primary/[0.04] to-transparent" />
-        <div className="absolute inset-0 border border-primary/15 rounded-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(0_0%_100%/0.15),transparent_70%)]" />
 
         <div className="relative p-12 md:p-16 lg:p-20 text-center">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Ofertas Exclusivas</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-5">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-primary-foreground/80 mb-6">Ofertas Exclusivas</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-5 text-primary-foreground">
             Ofertas Especiais do Mês
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed">
+          <p className="text-primary-foreground/80 text-sm md:text-base mb-12 max-w-md mx-auto leading-relaxed">
             Descontos exclusivos para produção. Condições especiais por tempo limitado.
           </p>
           <a
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 bg-primary text-primary-foreground rounded-full px-9 py-4 text-sm font-medium tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+            className="group inline-flex items-center gap-2.5 bg-primary-foreground text-primary rounded-full px-9 py-4 text-sm font-medium tracking-wide hover:bg-primary-foreground/90 transition-all duration-300 hover:shadow-lg"
           >
             Aproveitar Agora
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
