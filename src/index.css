@@ -247,7 +247,7 @@
 
   .animate-loading-bar {
     transform-origin: left;
-    animation: loading-bar 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    animation: loading-bar 2.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
     transform: scaleX(0);
   }
 
