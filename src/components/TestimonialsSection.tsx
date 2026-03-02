@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
             ))}
           </div>
 
-          <p className="font-heading text-xl md:text-2xl lg:text-3xl leading-relaxed mb-10 text-foreground/90">
+          <p className="font-heading text-lg md:text-2xl lg:text-3xl leading-relaxed mb-10 text-foreground/90">
             "{t.text}"
           </p>
 

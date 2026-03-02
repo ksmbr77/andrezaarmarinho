@@ -13,7 +13,7 @@ const OffersBanner = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(0_0%_100%/0.15),transparent_70%)]" />
 
-        <div className="relative p-12 md:p-16 lg:p-20 text-center">
+        <div className="relative p-8 md:p-16 lg:p-20 text-center">
           <p className="text-[11px] tracking-[0.3em] uppercase text-primary-foreground/80 mb-6">Ofertas Exclusivas</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-5 text-primary-foreground">
             Ofertas Especiais do Mês
