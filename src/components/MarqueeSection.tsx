@@ -7,13 +7,13 @@ const phrases = [
 
 const MarqueeRow = ({ direction, primary }: { direction: "left" | "right"; primary: boolean }) => {
   // Duplicate enough to fill and loop seamlessly
-  const items = [...phrases, ...phrases, ...phrases, ...phrases, ...phrases, ...phrases];
+  const items = [...phrases, ...phrases, ...phrases, ...phrases];
 
   return (
     <div className="relative overflow-hidden">
       <div
         className={`flex whitespace-nowrap ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
-        style={{ willChange: "transform" }}
+        
       >
         {items.map((phrase, i) => (
           <span
