@@ -30,7 +30,7 @@ const CategoriesSection = () => {
               href={`${WHATSAPP_LINK}?text=${encodeURIComponent(cat.msg)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-card border border-border hover:border-primary/50 rounded-2xl p-4 sm:p-5 md:p-8 text-center transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 overflow-hidden border-b-2 border-b-transparent hover:border-b-primary/60"
+              className="group relative bg-card border border-border hover:border-primary/50 rounded-xl p-4 sm:p-5 md:p-8 text-center transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 overflow-hidden border-b-2 border-b-transparent hover:border-b-primary/60"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.00] to-primary/[0.00] group-hover:from-primary/[0.06] group-hover:to-primary/[0.02] transition-all duration-500" />
               <div className="relative">
@@ -46,7 +46,7 @@ const CategoriesSection = () => {
           ))}
         </div>
 
-        <div className="mt-12 sm:mt-16 md:mt-20 border border-dashed border-primary/20 rounded-2xl p-6 sm:p-8 md:p-16 text-center bg-primary/[0.02]">
+        <div className="mt-12 sm:mt-16 md:mt-20 border border-dashed border-primary/20 rounded-xl p-6 sm:p-8 md:p-16 text-center bg-primary/[0.02]">
           <p className="text-muted-foreground/50 text-sm tracking-wide">Espaço reservado para o catálogo completo</p>
         </div>
       </div>

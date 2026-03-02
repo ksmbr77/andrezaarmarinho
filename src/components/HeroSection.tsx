@@ -28,7 +28,7 @@ const HeroSection = () => {
           transition={{ ...transition, delay: 0.2 }}
           className="mb-10"
         >
-          <span className="inline-flex items-center gap-2.5 border border-primary-foreground/30 bg-primary-foreground/10 rounded-full px-5 py-2.5 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.15em] text-primary-foreground/80">
+          <span className="inline-flex items-center gap-2.5 border border-primary-foreground/30 bg-primary-foreground/10 rounded-lg px-5 py-2.5 text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.15em] text-primary-foreground/80">
             <span className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
             O Maior Armarinho de Sergipe
           </span>
@@ -85,7 +85,7 @@ const HeroSection = () => {
         >
           <a
             href="#catalogo"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-primary-foreground text-primary rounded-full px-9 py-4 text-sm font-bold tracking-wide hover:bg-primary-foreground/90 transition-all duration-300 hover:shadow-lg hover:shadow-black/20"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-primary-foreground text-primary rounded-lg px-9 py-4 text-sm font-bold tracking-wide hover:bg-primary-foreground/90 transition-all duration-300 hover:shadow-lg hover:shadow-black/20"
           >
             Ver Catálogo
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -94,7 +94,7 @@ const HeroSection = () => {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 border border-primary-foreground/40 text-primary-foreground rounded-full px-9 py-4 text-sm tracking-wide hover:border-primary-foreground/70 hover:bg-primary-foreground/10 transition-all duration-300"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 border border-primary-foreground/40 text-primary-foreground rounded-lg px-9 py-4 text-sm tracking-wide hover:border-primary-foreground/70 hover:bg-primary-foreground/10 transition-all duration-300"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse" />
             Falar no WhatsApp
