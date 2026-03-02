@@ -1,15 +1,15 @@
-import { Layers, Ribbon, Scissors, Package, Wrench, Ruler } from "lucide-react";
+import { Layers, Spline, Scissors, Package, Hammer, Waves } from "lucide-react";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
 const WHATSAPP_LINK = "https://wa.me/5579996373312";
 
 const categories = [
   { name: "Tecidos", icon: Layers, msg: "Olá Andreza! Tenho interesse em Tecidos." },
-  { name: "Linhas & Fios", icon: Ribbon, msg: "Olá Andreza! Tenho interesse em Linhas & Fios." },
+  { name: "Linhas & Fios", icon: Spline, msg: "Olá Andreza! Tenho interesse em Linhas & Fios." },
   { name: "Aviamentos", icon: Scissors, msg: "Olá Andreza! Tenho interesse em Aviamentos." },
   { name: "Embalagens", icon: Package, msg: "Olá Andreza! Tenho interesse em Embalagens." },
-  { name: "Ferramentas", icon: Wrench, msg: "Olá Andreza! Tenho interesse em Ferramentas de Costura." },
-  { name: "Rendas & Elásticos", icon: Ruler, msg: "Olá Andreza! Tenho interesse em Rendas & Elásticos." },
+  { name: "Ferramentas", icon: Hammer, msg: "Olá Andreza! Tenho interesse em Ferramentas de Costura." },
+  { name: "Rendas & Elásticos", icon: Waves, msg: "Olá Andreza! Tenho interesse em Rendas & Elásticos." },
 ];
 
 const CategoriesSection = () => {
