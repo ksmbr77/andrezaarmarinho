@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Instagram } from "lucide-react";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
@@ -12,16 +12,21 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
   const [show, setShow] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setShow(true); obs.disconnect(); } },
+      ([e]) => {
+        if (e.isIntersecting) {
+          setShow(true);
+          obs.disconnect();
+        }
+      },
       { rootMargin: "200px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  });
+  }, []);
 
   return (
     <div ref={ref} className="w-full h-full relative">
@@ -38,8 +43,13 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
         />
       )}
       {(!show || !loaded) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-card/50">
-          <Instagram size={32} className="text-muted-foreground/30 animate-pulse" />
+        <div className="absolute inset-0 flex items-center justify-center bg-card/80">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center animate-pulse">
+              <Instagram size={22} className="text-primary-foreground" />
+            </div>
+            <span className="text-muted-foreground text-xs tracking-wide">Carregando...</span>
+          </div>
         </div>
       )}
     </div>
@@ -69,7 +79,7 @@ const InstagramSection = () => {
             {videos.map((video) => (
               <div
                 key={video.url}
-                className="rounded-2xl overflow-hidden border border-border/30 bg-card/50 aspect-[4/5] md:aspect-[3/4]"
+                className="rounded-2xl overflow-hidden border border-primary/15 bg-card shadow-lg shadow-primary/5 aspect-[4/5] md:aspect-[3/4]"
               >
                 <LazyIframe url={video.url} title={video.title} />
               </div>
@@ -81,7 +91,7 @@ const InstagramSection = () => {
               href="https://instagram.com/andrezaarmarinho"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 border border-border/50 text-foreground/70 rounded-full px-7 py-3.5 text-sm tracking-wide hover:border-foreground/30 hover:text-foreground transition-all duration-300"
+              className="inline-flex items-center gap-2.5 border border-primary/30 text-primary rounded-full px-7 py-3.5 text-sm tracking-wide hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             >
               <Instagram size={16} strokeWidth={1.5} />
               Seguir @andrezaarmarinho

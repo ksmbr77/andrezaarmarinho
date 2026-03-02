@@ -59,7 +59,7 @@ const LocationSection = () => {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.5!2d-38.0001055!3d-11.1881728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x711b318661a587b%3A0x556c5e3d5cfd4c!2sAndreza%20Armarinho!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: "invert(0.9) hue-rotate(180deg) brightness(1.2) contrast(1)" }}
+                style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
