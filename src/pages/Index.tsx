@@ -18,10 +18,15 @@ const Index = () => {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const timer = setTimeout(() => {
       setExiting(true);
-      setTimeout(() => setLoading(false), 500);
+      setTimeout(() => {
+        setLoading(false);
+        window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+        requestAnimationFrame(() => {
+          document.getElementById('hero')?.scrollIntoView();
+        });
+      }, 500);
     }, 1200);
     return () => clearTimeout(timer);
   }, []);
