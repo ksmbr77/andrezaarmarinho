@@ -1,78 +1,82 @@
 
 
-# Mudar Tema para Fundo Branco + Melhorar Tipografia
+# Corrigir Erros, Destacar Vermelho, Instagram e Melhorar Hero
 
-## Resumo
+## Problemas Identificados
 
-Inverter completamente a paleta de cores do site: sair do fundo preto com letras brancas para fundo branco com textos em preto e vermelho. Ao mesmo tempo, atualizar a tipografia para uma combinacao mais moderna e sofisticada.
-
----
-
-## 1. Tipografia Premium
-
-Trocar as fontes atuais (Playfair Display + DM Sans) por uma combinacao mais moderna e elegante:
-
-- **Headings**: `Inter` ou `Outfit` (sem serifa, moderno, limpo) -- peso 600-800
-- **Body**: `Inter` (sans-serif, excelente legibilidade)
-
-Isso vai dar um visual mais clean e contemporaneo, alinhado com o padrao de marcas de alto nivel.
-
-## 2. Paleta de Cores -- Inversao Completa
-
-Alterar as CSS variables em `src/index.css`:
-
-| Variavel | Antes (escuro) | Depois (claro) |
-|----------|----------------|-----------------|
-| `--background` | 0 0% 4% (preto) | 0 0% 100% (branco) |
-| `--foreground` | 0 0% 100% (branco) | 0 0% 8% (preto) |
-| `--card` | 0 0% 7% | 0 0% 98% |
-| `--card-foreground` | branco | preto |
-| `--muted` | 0 0% 15% | 0 0% 96% |
-| `--muted-foreground` | 0 0% 65% | 0 0% 40% |
-| `--border` | 0 0% 16% | 0 0% 90% |
-| `--primary` | vermelho (mantido) | vermelho (mantido) |
-| `--primary-foreground` | branco (mantido) | branco (mantido) |
-
-## 3. Componentes Impactados
-
-Ajustes necessarios em componentes que usam cores hardcoded (nao via variavel CSS):
-
-- **HeroSection.tsx**: Remover glow escuro, ajustar grid overlay e vinheta para fundo branco
-- **Navbar.tsx**: Atualizar `bg-background/90` (ja funciona via variavel), ajustar borda
-- **MarqueeSection.tsx**: Gradientes de fade nas bordas usam `from-background` (funciona automatico)
-- **LoadingScreen.tsx**: Usa `bg-background` (funciona automatico)
-- **Footer.tsx**: Borda e textos ajustam automaticamente
-- **WhyChooseUs.tsx**: Cards com `bg-foreground/[0.04]` precisam de revisao para contraste no claro
-- **LeadFormSection.tsx**: Bordas e inputs transparentes funcionam, mas revisar contraste
-- **TestimonialsSection.tsx**: Revisar botoes de navegacao
-
-## 4. Detalhes Tecnicos
-
-### Arquivo: `src/index.css`
-- Trocar URL do Google Fonts para `Inter:wght@300;400;500;600;700;800`
-- Atualizar todas as CSS variables para a paleta clara
-- Atualizar `--font-heading` e `--font-body` para `Inter`
-
-### Arquivo: `tailwind.config.ts`
-- Atualizar `fontFamily` para `Inter`
-
-### Arquivo: `src/components/HeroSection.tsx`
-- Trocar glow vermelho escuro por um glow sutil claro
-- Ajustar grid para funcionar em fundo branco
-- Vinheta: inverter gradiente radial
-
-### Arquivo: `src/components/WhyChooseUs.tsx`
-- Trocar `bg-foreground/[0.04]` por `bg-muted` ou `bg-card` para cards
-
-### Arquivo: `src/components/Navbar.tsx`
-- O WhatsApp button verde precisa garantir contraste no fundo claro
-
-### Arquivo: `src/components/LeadFormSection.tsx`
-- Revisar placeholder e borda de inputs para contraste claro
+1. **Instagram**: Os embeds aparecem mas estao com tamanho inadequado e o container nao tem destaque visual suficiente
+2. **Cards de categoria**: Muito palidos, sem destaque vermelho -- parecem "lavados" no fundo branco
+3. **Hero Section**: Funcional mas pode ser mais impactante com melhor uso do vermelho e hierarquia visual
+4. **Cards "WhyChooseUs"**: Falta contraste e destaque vermelho nos cards
+5. **Botao "Proximo" no formulario**: Aparece com cor desbotada (rosa claro ao inves de vermelho forte)
 
 ---
 
-## Resultado Esperado
+## Mudancas Planejadas
 
-Site limpo, moderno, fundo branco com tipografia Inter, textos pretos e destaques em vermelho. Visual sofisticado e leve, mantendo toda a estrutura e funcionalidade existente.
+### 1. Hero Section -- mais impactante
+- Adicionar um gradiente vermelho sutil no fundo (radial glow maior e mais visivel)
+- Melhorar o badge "O Maior Armarinho de Sergipe" com borda vermelha mais forte
+- Aumentar o destaque visual da linha vermelha abaixo de "Aqui"
+- Adicionar um elemento decorativo vermelho (linha ou detalhe) entre o subtitulo e os CTAs
+
+### 2. Cards de Categoria -- vermelho destacado
+- Adicionar `bg-card` (ou `bg-white`) com borda mais visivel
+- Icones com fundo vermelho mais forte (`bg-primary/15` para `bg-primary/20`)
+- Borda inferior ou lateral vermelha nos cards (`border-b-2 border-primary/30`)
+- Hover com gradiente vermelho mais intenso
+
+### 3. Instagram Section -- corrigir e melhorar
+- Aumentar a altura minima dos containers dos iframes para garantir visibilidade
+- Adicionar borda vermelha mais forte nos containers (`border-primary/25`)
+- Melhorar o placeholder de loading com fundo mais contrastante
+- Garantir que o aspect-ratio permita visualizacao adequada do conteudo
+
+### 4. WhyChooseUs -- cards com mais vermelho
+- Borda esquerda vermelha nos cards (`border-l-3 border-primary/40`)
+- Hover mais impactante com shadow vermelha
+
+### 5. OffersBanner -- ja esta bom, pequenos ajustes de shadow
+
+### 6. LeadFormSection -- corrigir botao desbotado
+- Garantir que o botao "Proximo" use `bg-primary` corretamente (sem opacity)
+
+---
+
+## Arquivos Modificados
+
+| Arquivo | Mudanca |
+|---------|---------|
+| `src/components/HeroSection.tsx` | Glow vermelho mais visivel, badge e decoracoes melhoradas |
+| `src/components/CategoriesSection.tsx` | Cards com borda vermelha, fundo mais contrastante, hover mais forte |
+| `src/components/InstagramSection.tsx` | Containers maiores, bordas vermelhas, melhor loading state |
+| `src/components/WhyChooseUs.tsx` | Borda lateral vermelha nos cards, hover mais impactante |
+| `src/components/LeadFormSection.tsx` | Botao com cor correta, bordas melhoradas |
+
+---
+
+## Detalhes Tecnicos
+
+### HeroSection.tsx
+- Glow: mudar de `bg-primary/[0.04]` para `bg-primary/[0.08]` e aumentar tamanho
+- Badge: mudar border de `border-primary/20` para `border-primary/40`
+- Adicionar uma faixa decorativa vermelha fina no topo da section
+
+### CategoriesSection.tsx
+- Cards: adicionar `bg-white border-border hover:border-primary/40 shadow-sm hover:shadow-lg hover:shadow-primary/10`
+- Icone container: `bg-primary/15 border border-primary/20` -> `bg-primary/10`
+- Adicionar `border-b-2 border-b-primary/0 group-hover:border-b-primary/50 transition-all`
+
+### InstagramSection.tsx
+- Container: `aspect-[4/5]` esta adequado, mas adicionar `min-h-[400px] md:min-h-[500px]`
+- Borda: `border-primary/15` -> `border-primary/30`
+- Shadow: `shadow-lg shadow-primary/5` -> `shadow-xl shadow-primary/10`
+- Loading: fundo com gradiente vermelho sutil
+
+### WhyChooseUs.tsx
+- Cards: adicionar `border-l-[3px] border-l-primary/30 hover:border-l-primary/60`
+- Shadow no hover mais forte: `hover:shadow-xl hover:shadow-primary/10`
+
+### LeadFormSection.tsx
+- Verificar que `disabled:opacity-20` no botao nao esta causando o visual desbotado -- mudar para `disabled:opacity-30`
 
