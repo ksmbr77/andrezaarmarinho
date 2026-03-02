@@ -46,19 +46,24 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
         />
       )}
 
-      {/* Play/Pause button */}
+      {/* Overlay + Play/Pause button */}
       {loaded && (
-        <button
-          onClick={() => setInteracting((prev) => !prev)}
-          className="absolute bottom-5 right-5 z-20 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-xl shadow-primary/40 transition-all duration-300 hover:scale-110 active:scale-95"
-          aria-label={interacting ? "Pausar vídeo" : "Reproduzir vídeo"}
-        >
-          {interacting ? (
-            <Pause size={22} fill="currentColor" strokeWidth={0} />
-          ) : (
-            <Play size={22} fill="currentColor" strokeWidth={0} className="ml-0.5" />
+        <>
+          {!interacting && (
+            <div className="absolute inset-0 z-10 bg-black/5 backdrop-blur-[1px] transition-opacity duration-300" />
           )}
-        </button>
+          <button
+            onClick={() => setInteracting((prev) => !prev)}
+            className="absolute bottom-5 right-5 z-20 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-xl shadow-primary/40 transition-all duration-300 hover:scale-110 active:scale-95"
+            aria-label={interacting ? "Pausar vídeo" : "Reproduzir vídeo"}
+          >
+            {interacting ? (
+              <Pause size={22} fill="currentColor" strokeWidth={0} />
+            ) : (
+              <Play size={22} fill="currentColor" strokeWidth={0} className="ml-0.5" />
+            )}
+          </button>
+        </>
       )}
 
       {(!show || !loaded) && (
