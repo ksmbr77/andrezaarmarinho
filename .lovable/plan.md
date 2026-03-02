@@ -1,147 +1,82 @@
 
-# Corrigir Responsividade e Alinhar Cores do Site
 
-## Problema Principal
-A Navbar tem logo e links em cor escura sobre o fundo vermelho do Hero, ficando quase invisivel. Alem disso, varios componentes precisam de ajustes de responsividade em mobile e desktop.
+# Corrigir Alinhamento, Border Radius e Logos
 
----
+## Problemas Identificados
 
-## 1. Navbar -- cores alinhadas ao hero vermelho
-
-A navbar precisa detectar que esta sobre o hero vermelho e usar cores brancas:
-
-- Quando `scrolled = false` (no topo/hero): links em `text-primary-foreground` (branco), icone hamburger branco, logo com filtro `brightness(0) invert(1)` para ficar branca
-- Quando `scrolled = true` (rolou): manter como esta, com `bg-background/90` e links escuros
-- Mobile menu: manter bg claro com links escuros (ja esta ok)
-- Logo: `h-10 md:h-14 lg:h-16` (menor e mais proporcional)
-
-**Arquivo**: `src/components/Navbar.tsx`
+1. **Logo "Andreza Armarinho" muito pequena** -- tanto na Navbar quanto no Footer
+2. **Logo "Fly Agency" pouco visivel** no rodape (pequena e com opacity baixa)
+3. **Border radius muito arredondado** -- botoes `rounded-full`, cards `rounded-2xl`/`rounded-3xl` precisam ser mais quadrados
+4. **Botao "Proximo" rosa/desbotado** -- precisa ser vermelho solido
+5. **Nova logo Fly Agency** -- o usuario enviou uma nova imagem para substituir a atual
 
 ---
 
-## 2. Hero Section -- responsividade
+## 1. Copiar nova logo Fly Agency para o projeto
 
-- Desktop: reduzir headline de `lg:text-[6.5rem]` para `lg:text-[5.5rem]` para nao quebrar em 3 linhas
-- Mobile: manter `text-[2.2rem]` que esta ok
-- CTAs mobile: garantir `w-full sm:w-auto` para botoes ficarem full-width no mobile e inline no desktop
-- Badge: `text-[10px] sm:text-[11px]` para mobile
-- Padding: `px-4 sm:px-6` para mais espaco lateral no mobile pequeno
-
-**Arquivo**: `src/components/HeroSection.tsx`
+Copiar `user-uploads://IMG_0313-2.PNG` para `src/assets/fly-agency.png` (substituindo a atual).
 
 ---
 
-## 3. Marquee Section -- responsividade
+## 2. Aumentar logo Andreza Armarinho
 
-- Texto mobile: `text-2xl sm:text-3xl md:text-6xl` (menor em telas muito pequenas)
-- Gaps: `gap-4 sm:gap-6 md:gap-10`
+**Navbar** (`src/components/Navbar.tsx`):
+- De `h-10 md:h-14 lg:h-16` para `h-12 md:h-16 lg:h-20`
 
-**Arquivo**: `src/components/MarqueeSection.tsx`
-
----
-
-## 4. Categories Section -- responsividade
-
-- Grid mobile: `grid-cols-2` com `gap-3 sm:gap-4 md:gap-6`
-- Cards padding: `p-4 sm:p-5 md:p-8`
-- Icone container: `w-12 h-12 sm:w-14 sm:h-14` para proporcionalidade
-- Titulo da secao: `text-2xl sm:text-3xl md:text-5xl lg:text-6xl`
-- Placeholder "espaco reservado": padding `p-6 sm:p-8 md:p-16`
-
-**Arquivo**: `src/components/CategoriesSection.tsx`
+**Footer** (`src/components/Footer.tsx`):
+- De `h-12 sm:h-16` para `h-16 sm:h-20`
 
 ---
 
-## 5. WhyChooseUs -- responsividade
+## 3. Melhorar visibilidade da Fly Agency no rodape
 
-- Cards padding: `px-5 py-5 sm:px-7 sm:py-6`
-- Titulo: `text-2xl sm:text-3xl md:text-5xl lg:text-6xl`
-- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
-
-**Arquivo**: `src/components/WhyChooseUs.tsx`
-
----
-
-## 6. Instagram Section -- responsividade
-
-- Video containers: `min-h-[350px] sm:min-h-[400px] md:min-h-[500px]`
-- Titulo: `text-2xl sm:text-3xl md:text-5xl`
-- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
-
-**Arquivo**: `src/components/InstagramSection.tsx`
+**Footer** (`src/components/Footer.tsx`):
+- Logo Fly: de `h-6 sm:h-8 opacity-80` para `h-10 sm:h-12 opacity-100`
+- Texto "Fly Agency": de `text-xs sm:text-sm md:text-base` para `text-sm sm:text-base md:text-lg font-bold`
+- Texto "Desenvolvido por": aumentar para `text-sm sm:text-base`
 
 ---
 
-## 7. Testimonials -- responsividade
+## 4. Reduzir border-radius global (mais quadrado)
 
-- Texto depoimento: `text-base sm:text-lg md:text-2xl lg:text-3xl`
-- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
+**CSS** (`src/index.css`):
+- Alterar `--radius: 0.75rem` para `--radius: 0.5rem`
 
-**Arquivo**: `src/components/TestimonialsSection.tsx`
+**Botoes em todo o site** -- trocar `rounded-full` por `rounded-lg`:
+- `HeroSection.tsx`: CTAs e badge
+- `Navbar.tsx`: botao WhatsApp desktop e mobile
+- `CategoriesSection.tsx`: cards de `rounded-2xl` para `rounded-xl`
+- `WhyChooseUs.tsx`: cards de `rounded-2xl` para `rounded-xl`
+- `OffersBanner.tsx`: container de `rounded-3xl` para `rounded-2xl`, botao CTA
+- `LeadFormSection.tsx`: container de `rounded-3xl` para `rounded-xl`, botoes, chips de interesse
+- `LocationSection.tsx`: botao e mapa container
+- `Footer.tsx`: icones sociais de `rounded-full` para `rounded-lg`
 
----
-
-## 8. OffersBanner -- responsividade
-
-- Padding interno: `p-6 sm:p-8 md:p-16 lg:p-20`
-- Titulo: `text-2xl sm:text-3xl md:text-5xl`
-
-**Arquivo**: `src/components/OffersBanner.tsx`
-
----
-
-## 9. LeadForm -- responsividade
-
-- Container padding: `p-5 sm:p-6 md:p-10`
-- Titulo: `text-2xl sm:text-3xl md:text-4xl lg:text-5xl`
-- Section padding: `py-16 sm:py-24 md:py-32 lg:py-40`
-
-**Arquivo**: `src/components/LeadFormSection.tsx`
+**Classes globais** (`src/index.css`):
+- `.btn-cta`, `.btn-cta-outline`, `.btn-whatsapp`: de `rounded-full` para `rounded-lg`
+- `.glass-card`: de `rounded-2xl` para `rounded-xl`
 
 ---
 
-## 10. Location Section -- responsividade
+## 5. Corrigir cor do botao "Proximo"
 
-- Map height mobile: `h-[250px] sm:h-[280px] md:h-full`
-- Grid gap: `gap-8 sm:gap-12 md:gap-16`
-- Titulo: `text-2xl sm:text-3xl md:text-5xl`
-
-**Arquivo**: `src/components/LocationSection.tsx`
-
----
-
-## 11. Footer -- responsividade e alinhamento
-
-- Logo height: `h-12 sm:h-16`
-- Credits text: `text-xs sm:text-sm md:text-base`
-- Flex gap columns: `gap-8 sm:gap-16`
-- Mobile: stack tudo em coluna com alinhamento centralizado
-
-**Arquivo**: `src/components/Footer.tsx`
-
----
-
-## 12. App.css -- remover estilos conflitantes
-
-O `src/App.css` tem `#root { max-width: 1280px; margin: 0 auto; padding: 2rem; text-align: center; }` que pode estar limitando a largura do site e adicionando padding indesejado. Remover ou limpar esses estilos.
-
-**Arquivo**: `src/App.css`
+**LeadFormSection.tsx**:
+- O botao ja tem `bg-primary text-primary-foreground` -- verificar se ha um conflito CSS com `disabled:opacity-40` que esta deixando rosa. Garantir que o estado ativo seja `bg-primary` solido (vermelho puro).
 
 ---
 
 ## Resumo de Arquivos
 
-| Arquivo | Mudanca Principal |
-|---------|-------------------|
-| `src/components/Navbar.tsx` | Links/logo brancos sobre hero, escuros ao rolar |
-| `src/components/HeroSection.tsx` | Headline menor desktop, CTAs full-width mobile |
-| `src/components/MarqueeSection.tsx` | Texto menor mobile |
-| `src/components/CategoriesSection.tsx` | Cards/grid responsivos |
-| `src/components/WhyChooseUs.tsx` | Padding/titulo responsivos |
-| `src/components/InstagramSection.tsx` | Min-height e titulo responsivos |
-| `src/components/TestimonialsSection.tsx` | Texto depoimento responsivo |
-| `src/components/OffersBanner.tsx` | Padding interno responsivo |
-| `src/components/LeadFormSection.tsx` | Container/titulo responsivos |
-| `src/components/LocationSection.tsx` | Map e grid responsivos |
-| `src/components/Footer.tsx` | Layout mobile melhorado |
-| `src/App.css` | Remover max-width/padding do #root |
+| Arquivo | Mudanca |
+|---------|---------|
+| `src/assets/fly-agency.png` | Substituir pela nova logo enviada |
+| `src/index.css` | `--radius: 0.5rem`, atualizar classes `.btn-*` e `.glass-card` |
+| `src/components/Navbar.tsx` | Logo maior, botao com `rounded-lg` |
+| `src/components/HeroSection.tsx` | CTAs e badge com `rounded-lg` |
+| `src/components/CategoriesSection.tsx` | Cards `rounded-xl` |
+| `src/components/WhyChooseUs.tsx` | Cards `rounded-xl` |
+| `src/components/OffersBanner.tsx` | Container `rounded-2xl`, botao `rounded-lg` |
+| `src/components/LeadFormSection.tsx` | Container `rounded-xl`, botoes `rounded-lg`, chips `rounded-lg` |
+| `src/components/LocationSection.tsx` | Botao `rounded-lg`, mapa `rounded-xl` |
+| `src/components/Footer.tsx` | Logo maior, Fly Agency maior e mais visivel, icones `rounded-lg` |
+
