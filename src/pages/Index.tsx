@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -16,16 +15,20 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
+  const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const timer = setTimeout(() => setLoading(false), 1500);
+    const timer = setTimeout(() => {
+      setExiting(true);
+      setTimeout(() => setLoading(false), 500);
+    }, 1200);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      <AnimatePresence>{loading && <LoadingScreen />}</AnimatePresence>
+      {loading && <LoadingScreen onExit={exiting} />}
 
       {!loading && (
         <>

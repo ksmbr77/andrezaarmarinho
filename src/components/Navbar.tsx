@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import logoFull from "@/assets/logo-full.png";
 
 const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Vim pelo site e gostaria de saber mais sobre os produtos.";
@@ -71,38 +70,32 @@ const Navbar = () => {
         </button>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/98 backdrop-blur-xl border-t border-border/30 overflow-hidden"
+      <div
+        className={`md:hidden bg-background/98 backdrop-blur-xl border-t border-border/30 overflow-hidden transition-all duration-300 ${
+          mobileOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col px-6 py-6 gap-5">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="text-foreground/70 hover:text-foreground transition-colors text-base tracking-wide"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-primary text-primary-foreground text-center py-3.5 rounded-lg text-sm tracking-wide uppercase mt-2"
           >
-            <div className="flex flex-col px-6 py-6 gap-5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-foreground/70 hover:text-foreground transition-colors text-base tracking-wide"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-primary-foreground text-center py-3.5 rounded-lg text-sm tracking-wide uppercase mt-2"
-              >
-                Falar no WhatsApp
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
     </nav>
   );
 };

@@ -1,10 +1,9 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Mail, Send } from "lucide-react";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 const NewsletterSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, visible } = useFadeIn();
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -17,11 +16,8 @@ const NewsletterSection = () => {
 
   return (
     <section className="section-padding" ref={ref}>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="max-w-2xl mx-auto text-center"
+      <div
+        className={`max-w-2xl mx-auto text-center transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
       >
         <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary/10 flex items-center justify-center">
           <Mail size={32} className="text-primary" />
@@ -38,7 +34,7 @@ const NewsletterSection = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="flex-1 bg-secondary border border-border rounded-full px-6 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            className="flex-1 bg-secondary border border-border rounded-lg px-6 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <button type="submit" className="btn-cta flex items-center justify-center gap-2 !px-6">
             <Send size={16} />
@@ -47,7 +43,7 @@ const NewsletterSection = () => {
         </form>
 
         <p className="text-muted-foreground text-xs mt-4">Prometemos não enviar spam 💌</p>
-      </motion.div>
+      </div>
     </section>
   );
 };
