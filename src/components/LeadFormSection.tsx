@@ -120,7 +120,7 @@ const LeadFormSection = () => {
                 <button
                   onClick={() => canProceed && setStep((s) => s + 1)}
                   disabled={!canProceed}
-                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-primary/20"
+                  className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-7 py-3.5 text-sm tracking-wide hover:bg-primary/90 transition-all duration-300 disabled:bg-primary/50 disabled:text-primary-foreground/70 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-primary/20"
                 >
                   Próximo <ArrowRight size={14} />
                 </button>
