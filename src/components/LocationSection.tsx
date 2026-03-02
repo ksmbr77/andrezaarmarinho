@@ -19,7 +19,7 @@ const LazyMap = () => {
           obs.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "400px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
