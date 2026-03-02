@@ -1,24 +1,18 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Quero aproveitar as ofertas especiais do mês!";
 
 const OffersBanner = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { ref, visible } = useFadeIn();
 
   return (
     <section className="px-6 py-20 md:py-28" ref={ref}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-4xl mx-auto relative overflow-hidden rounded-3xl"
+      <div
+        className={`max-w-4xl mx-auto relative overflow-hidden rounded-3xl transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
       >
-        {/* Gradient bg */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.08] via-primary/[0.04] to-transparent" />
         <div className="absolute inset-0 border border-primary/15 rounded-3xl" />
-        
+
         <div className="relative p-12 md:p-16 lg:p-20 text-center">
           <p className="text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Ofertas Exclusivas</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-5">
@@ -37,7 +31,7 @@ const OffersBanner = () => {
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
           </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

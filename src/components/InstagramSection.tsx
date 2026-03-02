@@ -1,26 +1,31 @@
-import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Instagram } from "lucide-react";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 const videos = [
-  {
-    url: "https://www.instagram.com/p/DUqJXZ3kc9Y/embed",
-    title: "Andreza Armarinho - Vídeo 1",
-  },
-  {
-    url: "https://www.instagram.com/p/DVJDyR8jo-T/embed",
-    title: "Andreza Armarinho - Vídeo 2",
-  },
+  { url: "https://www.instagram.com/p/DUqJXZ3kc9Y/embed", title: "Andreza Armarinho - Vídeo 1" },
+  { url: "https://www.instagram.com/p/DVJDyR8jo-T/embed", title: "Andreza Armarinho - Vídeo 2" },
 ];
 
 const LazyIframe = ({ url, title }: { url: string; title: string }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "200px" });
+  const [show, setShow] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  useState(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setShow(true); obs.disconnect(); } },
+      { rootMargin: "200px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  });
 
   return (
     <div ref={ref} className="w-full h-full relative">
-      {isInView && (
+      {show && (
         <iframe
           src={url}
           title={title}
@@ -32,7 +37,7 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
           onLoad={() => setLoaded(true)}
         />
       )}
-      {(!isInView || !loaded) && (
+      {(!show || !loaded) && (
         <div className="absolute inset-0 flex items-center justify-center bg-card/50">
           <Instagram size={32} className="text-muted-foreground/30 animate-pulse" />
         </div>
@@ -42,21 +47,15 @@ const LazyIframe = ({ url, title }: { url: string; title: string }) => {
 };
 
 const InstagramSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { ref, visible } = useFadeIn();
 
   return (
     <section className="relative" ref={ref}>
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="px-6 py-24 md:py-32 lg:py-40">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center mb-14 md:mb-18"
-          >
+        <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
+          <div className="text-center mb-14 md:mb-18">
             <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 mb-5">Acompanhe</p>
             <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
               Veja Nosso <span className="text-primary">Dia a Dia</span>
@@ -64,28 +63,20 @@ const InstagramSection = () => {
             <p className="text-muted-foreground text-sm md:text-base">
               @andrezaarmarinho no Instagram
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12">
-            {videos.map((video, i) => (
-              <motion.div
+            {videos.map((video) => (
+              <div
                 key={video.url}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="rounded-2xl overflow-hidden border border-border/30 bg-card/50 aspect-[4/5] md:aspect-[3/4]"
               >
                 <LazyIframe url={video.url} title={video.title} />
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-center"
-          >
+          <div className="text-center">
             <a
               href="https://instagram.com/andrezaarmarinho"
               target="_blank"
@@ -95,7 +86,7 @@ const InstagramSection = () => {
               <Instagram size={16} strokeWidth={1.5} />
               Seguir @andrezaarmarinho
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

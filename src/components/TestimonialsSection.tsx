@@ -1,6 +1,6 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 const testimonials = [
   { name: "Maria S.", location: "Aracaju, SE", text: "Melhor armarinho da região. Sempre encontro tudo que preciso para minha confecção. Atendimento impecável.", rating: 5 },
@@ -11,8 +11,7 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { ref, visible } = useFadeIn();
   const [current, setCurrent] = useState(0);
 
   const prev = () => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1));
@@ -22,22 +21,12 @@ const TestimonialsSection = () => {
 
   return (
     <section className="px-6 py-24 md:py-32 lg:py-40" ref={ref}>
-      <div className="max-w-3xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[11px] tracking-[0.3em] uppercase text-primary/70 text-center mb-16 md:mb-20"
-        >
+      <div className={`max-w-3xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
+        <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 text-center mb-16 md:mb-20">
           Depoimentos
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
-        >
+        <div className="text-center">
           <div className="flex justify-center gap-1.5 mb-10">
             {Array.from({ length: t.rating }).map((_, i) => (
               <Star key={i} size={14} className="text-accent fill-accent" />
@@ -70,7 +59,7 @@ const TestimonialsSection = () => {
               <ChevronRight size={16} className="text-muted-foreground" />
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
