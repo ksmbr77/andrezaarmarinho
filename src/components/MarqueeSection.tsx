@@ -6,24 +6,25 @@ const phrases = [
 ];
 
 const MarqueeRow = ({ direction, primary }: { direction: "left" | "right"; primary: boolean }) => {
-  // Duplicate enough to fill and loop seamlessly
-  const items = [...phrases, ...phrases, ...phrases, ...phrases];
+  const items = [...phrases, ...phrases, ...phrases];
+
+  const content = items.map((phrase, i) => (
+    <span
+      key={i}
+      className={`${primary ? "text-primary/[0.65]" : "text-foreground/[0.65]"} text-2xl sm:text-3xl md:text-6xl font-heading font-bold tracking-wide select-none shrink-0 px-3 sm:px-4 md:px-6`}
+    >
+      {phrase}
+      <span className={`${primary ? "text-foreground/[0.65]" : "text-primary/[0.65]"} mx-2 sm:mx-3 md:mx-5`}>·</span>
+    </span>
+  ));
 
   return (
     <div className="relative overflow-hidden">
       <div
         className={`flex whitespace-nowrap ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
-        
       >
-        {items.map((phrase, i) => (
-          <span
-            key={i}
-            className={`${primary ? "text-primary/[0.65]" : "text-foreground/[0.65]"} text-2xl sm:text-3xl md:text-6xl font-heading font-bold tracking-wide select-none shrink-0 px-3 sm:px-4 md:px-6`}
-          >
-            {phrase}
-            <span className={`${primary ? "text-foreground/[0.65]" : "text-primary/[0.65]"} mx-2 sm:mx-3 md:mx-5`}>·</span>
-          </span>
-        ))}
+        {content}
+        {content}
       </div>
     </div>
   );
