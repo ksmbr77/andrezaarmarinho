@@ -12,14 +12,14 @@ const MarqueeSection = () => {
     <section className="relative overflow-hidden py-10 md:py-14">
       {/* Row 1 */}
       <div className="relative mb-3 md:mb-4 overflow-hidden">
-        <div className="flex gap-6 md:gap-10 whitespace-nowrap animate-marquee-left">
+        <div className="flex gap-4 sm:gap-6 md:gap-10 whitespace-nowrap animate-marquee-left">
           {items.map((phrase, i) => (
             <span
               key={`a-${i}`}
-              className="text-foreground/[0.65] text-3xl md:text-6xl font-heading font-bold tracking-wide select-none"
+              className="text-foreground/[0.65] text-2xl sm:text-3xl md:text-6xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
-              <span className="text-primary/[0.65] mx-4 md:mx-6">·</span>
+              <span className="text-primary/[0.65] mx-3 sm:mx-4 md:mx-6">·</span>
             </span>
           ))}
         </div>
@@ -27,14 +27,14 @@ const MarqueeSection = () => {
 
       {/* Row 2 */}
       <div className="relative overflow-hidden">
-        <div className="flex gap-6 md:gap-10 whitespace-nowrap animate-marquee-right">
+        <div className="flex gap-4 sm:gap-6 md:gap-10 whitespace-nowrap animate-marquee-right">
           {items.map((phrase, i) => (
             <span
               key={`b-${i}`}
-              className="text-primary/[0.65] text-3xl md:text-6xl font-heading font-bold tracking-wide select-none"
+              className="text-primary/[0.65] text-2xl sm:text-3xl md:text-6xl font-heading font-bold tracking-wide select-none"
             >
               {phrase}
-              <span className="text-foreground/[0.65] mx-4 md:mx-6">·</span>
+              <span className="text-foreground/[0.65] mx-3 sm:mx-4 md:mx-6">·</span>
             </span>
           ))}
         </div>

@@ -16,25 +16,25 @@ const CategoriesSection = () => {
   const { ref, visible } = useFadeIn();
 
   return (
-    <section id="catalogo" className="px-6 py-20 md:py-36 lg:py-44" ref={ref}>
+    <section id="catalogo" className="px-4 sm:px-6 py-16 sm:py-24 md:py-36 lg:py-44" ref={ref}>
       <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 mb-5">Catálogo</p>
-          <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold">Explore por Categoria</h2>
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold">Explore por Categoria</h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {categories.map((cat) => (
             <a
               key={cat.name}
               href={`${WHATSAPP_LINK}?text=${encodeURIComponent(cat.msg)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-card border border-border hover:border-primary/50 rounded-2xl p-5 md:p-8 text-center transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 overflow-hidden border-b-2 border-b-transparent hover:border-b-primary/60"
+              className="group relative bg-card border border-border hover:border-primary/50 rounded-2xl p-4 sm:p-5 md:p-8 text-center transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 overflow-hidden border-b-2 border-b-transparent hover:border-b-primary/60"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.00] to-primary/[0.00] group-hover:from-primary/[0.06] group-hover:to-primary/[0.02] transition-all duration-500" />
               <div className="relative">
-                <div className="w-14 h-14 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/25 group-hover:border-primary/40 transition-all duration-300">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center mx-auto mb-4 sm:mb-5 group-hover:bg-primary/25 group-hover:border-primary/40 transition-all duration-300">
                   <cat.icon size={24} className="text-primary" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-sm md:text-base font-medium tracking-wide group-hover:text-primary transition-colors duration-300">{cat.name}</h3>
@@ -46,7 +46,7 @@ const CategoriesSection = () => {
           ))}
         </div>
 
-        <div className="mt-16 md:mt-20 border border-dashed border-primary/20 rounded-2xl p-8 md:p-16 text-center bg-primary/[0.02]">
+        <div className="mt-12 sm:mt-16 md:mt-20 border border-dashed border-primary/20 rounded-2xl p-6 sm:p-8 md:p-16 text-center bg-primary/[0.02]">
           <p className="text-muted-foreground/50 text-sm tracking-wide">Espaço reservado para o catálogo completo</p>
         </div>
       </div>

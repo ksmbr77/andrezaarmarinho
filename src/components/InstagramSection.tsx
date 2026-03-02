@@ -87,11 +87,11 @@ const InstagramSection = () => {
     <section className="relative" ref={ref}>
       <div className="section-divider" />
 
-      <div className="px-6 py-24 md:py-32 lg:py-40">
+      <div className="px-4 sm:px-6 py-16 sm:py-24 md:py-32 lg:py-40">
         <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
           <div className="text-center mb-14 md:mb-18">
             <p className="text-[11px] tracking-[0.3em] uppercase text-primary/70 mb-5">Acompanhe</p>
-            <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold mb-4">
               Veja Nosso <span className="text-primary">Dia a Dia</span>
             </h2>
             <p className="text-muted-foreground text-sm md:text-base">
@@ -103,7 +103,7 @@ const InstagramSection = () => {
             {videos.map((video) => (
               <div
                 key={video.url}
-                className="rounded-2xl overflow-hidden border border-primary/30 bg-card shadow-xl shadow-primary/10 aspect-[4/5] md:aspect-[3/4] min-h-[400px] md:min-h-[500px]"
+                className="rounded-2xl overflow-hidden border border-primary/30 bg-card shadow-xl shadow-primary/10 aspect-[4/5] md:aspect-[3/4] min-h-[350px] sm:min-h-[400px] md:min-h-[500px]"
               >
                 <LazyIframe url={video.url} title={video.title} />
               </div>
