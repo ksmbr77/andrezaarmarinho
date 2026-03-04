@@ -10,6 +10,7 @@ const categories = [
   { name: "Embalagens", icon: Package, msg: "Olá Andreza! Tenho interesse em Embalagens." },
   { name: "Ferramentas", icon: Hammer, msg: "Olá Andreza! Tenho interesse em Ferramentas de Costura." },
   { name: "Rendas & Elásticos", icon: Waves, msg: "Olá Andreza! Tenho interesse em Rendas & Elásticos." },
+  { name: "Crochê", icon: Spline, msg: "Olá Andreza! Tenho interesse em Crochê." },
 ];
 
 const CategoriesSection = () => {
