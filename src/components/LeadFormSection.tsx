@@ -6,7 +6,7 @@ const WHATSAPP_LINK = "https://wa.me/5579996373312";
 
 const interests = [
   "Tecidos", "Linhas & Fios", "Aviamentos", "Embalagens",
-  "Ferramentas de Costura", "Rendas & Elásticos", "Outro",
+  "Crochê", "Rendas & Elásticos", "Outro",
 ];
 
 const LeadFormSection = () => {
