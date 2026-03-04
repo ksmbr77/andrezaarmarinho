@@ -24,7 +24,12 @@ const LeadFormSection = () => {
 
   const handleSubmit = () => {
     const interestsList = selected.join(", ");
-    const message = `Olá Andreza Armarinho! Meu nome é ${name.trim()}. Tenho interesse em: ${interestsList}.${details.trim() ? ` Detalhes: ${details.trim()}` : ""} Vim pelo site e gostaria de mais informações!`;
+    const greeting = `Oii Andreza, tudo bem? 😊`;
+    const intro = `Meu nome é *${name.trim()}* e encontrei vocês pelo site!`;
+    const interest = `Estou interessado(a) em: *${interestsList}*.`;
+    const detail = details.trim() ? `\n\n📝 *Mais detalhes:* ${details.trim()}` : "";
+    const closing = `\n\nPoderia me ajudar com preços e disponibilidade? Obrigado(a)! 🙏`;
+    const message = `${greeting}\n${intro}\n\n🛒 ${interest}${detail}${closing}`;
     window.open(`${WHATSAPP_LINK}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
