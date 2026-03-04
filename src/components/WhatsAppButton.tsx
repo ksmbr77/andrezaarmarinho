@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
 
-const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Vim pelo site e gostaria de saber mais sobre os produtos e promoções.";
+const WHATSAPP_LINK = "https://wa.me/5579996373312?text=" + encodeURIComponent("Oii Andreza! 😊 Vim pelo site e gostaria de saber mais sobre os produtos e promoções disponíveis. Pode me ajudar?");
 
 const WhatsAppButton = () => {
   return (

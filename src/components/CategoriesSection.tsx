@@ -4,12 +4,12 @@ import { useFadeIn } from "@/hooks/useFadeIn";
 const WHATSAPP_LINK = "https://wa.me/5579996373312";
 
 const categories = [
-  { name: "Tecidos", icon: Layers, msg: "Olá Andreza! Tenho interesse em Tecidos." },
-  { name: "Linhas & Fios", icon: Spline, msg: "Olá Andreza! Tenho interesse em Linhas & Fios." },
-  { name: "Aviamentos", icon: Scissors, msg: "Olá Andreza! Tenho interesse em Aviamentos." },
-  { name: "Embalagens", icon: Package, msg: "Olá Andreza! Tenho interesse em Embalagens." },
-  { name: "Crochê", icon: Grip, msg: "Olá Andreza! Tenho interesse em Crochê." },
-  { name: "Rendas & Elásticos", icon: Waves, msg: "Olá Andreza! Tenho interesse em Rendas & Elásticos." },
+  { name: "Tecidos", icon: Layers, msg: "Oii Andreza! 😊 Vi no site que vocês trabalham com *Tecidos* e gostaria de saber mais sobre opções, cores e preços disponíveis. Pode me ajudar?" },
+  { name: "Linhas & Fios", icon: Spline, msg: "Oii Andreza! 😊 Estou procurando *Linhas e Fios* para um projeto. Quais tipos e cores vocês têm disponíveis? Vi pelo site!" },
+  { name: "Aviamentos", icon: Scissors, msg: "Oii Andreza! 😊 Preciso de *Aviamentos* e vi no site que vocês trabalham com isso. Poderia me mostrar o que tem disponível?" },
+  { name: "Embalagens", icon: Package, msg: "Oii Andreza! 😊 Encontrei vocês pelo site e tenho interesse em *Embalagens*. Quais opções vocês oferecem?" },
+  { name: "Crochê", icon: Grip, msg: "Oii Andreza! 😊 Adoro crochê e vi pelo site que vocês trabalham com materiais para *Crochê*! Quais produtos vocês têm? 🧶" },
+  { name: "Rendas & Elásticos", icon: Waves, msg: "Oii Andreza! 😊 Estou precisando de *Rendas e Elásticos*. Vi no site e gostaria de saber sobre os modelos e preços disponíveis!" },
 ];
 
 const CategoriesSection = () => {
