@@ -17,7 +17,7 @@ const HeroSection = () => {
       {/* Vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(0_100%_30%/0.4)_90%)]" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center pt-20 sm:pt-24 md:pt-0">
         {/* Badge */}
         <div className="mb-8 sm:mb-10 animate-hero-fade-in" style={{ animationDelay: '0.2s' }}>
           <span className="inline-flex items-center gap-2 sm:gap-2.5 border border-primary-foreground/40 bg-primary-foreground/15 rounded-lg px-4 sm:px-5 py-2 sm:py-2.5 text-[9px] sm:text-[11px] md:text-[12px] tracking-[0.12em] sm:tracking-[0.15em] text-primary-foreground font-medium backdrop-blur-sm shadow-lg shadow-black/10 animate-pulse-glow">
