@@ -21,11 +21,10 @@ const Index = () => {
     const timer = setTimeout(() => {
       setExiting(true);
       setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
         setLoading(false);
-        window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-        requestAnimationFrame(() => {
-          document.getElementById('hero')?.scrollIntoView();
-        });
       }, 500);
     }, 3000);
     return () => clearTimeout(timer);
