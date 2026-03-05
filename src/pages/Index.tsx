@@ -17,23 +17,15 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [exiting, setExiting] = useState(false);
 
-  // Lock scroll during loading
-  useEffect(() => {
-    if (loading) {
-      document.body.style.overflow = 'hidden';
-      window.scrollTo(0, 0);
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [loading]);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setExiting(true);
       setTimeout(() => {
-        window.scrollTo(0, 0);
         setLoading(false);
+        window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+        requestAnimationFrame(() => {
+          document.getElementById('hero')?.scrollIntoView();
+        });
       }, 500);
     }, 3000);
     return () => clearTimeout(timer);
@@ -43,22 +35,24 @@ const Index = () => {
     <>
       {loading && <LoadingScreen onExit={exiting} />}
 
-      <div className={loading ? "invisible" : "visible"}>
-        <Navbar />
-        <main>
-          <HeroSection />
-          <MarqueeSection />
-          <CategoriesSection />
-          <WhyChooseUs />
-          <OffersBanner />
-          <InstagramSection />
-          <TestimonialsSection />
-          <LeadFormSection />
-          <LocationSection />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
+      {!loading && (
+        <>
+          <Navbar />
+          <main>
+            <HeroSection />
+            <MarqueeSection />
+            <CategoriesSection />
+            <WhyChooseUs />
+            <OffersBanner />
+            <InstagramSection />
+            <TestimonialsSection />
+            <LeadFormSection />
+            <LocationSection />
+          </main>
+          <Footer />
+          <WhatsAppButton />
+        </>
+      )}
     </>
   );
 };

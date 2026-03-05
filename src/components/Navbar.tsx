@@ -27,12 +27,12 @@ const Navbar = () => {
         scrolled ? "bg-background/95 backdrop-blur-md border-b border-border/20" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3 md:py-5">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4 md:py-5">
         <a href="#hero" className="flex-shrink-0">
           <img
             src={logoFull}
             alt="Andreza Armarinho"
-            className={`h-10 sm:h-14 md:h-16 lg:h-20 transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
+            className={`h-16 sm:h-16 md:h-16 lg:h-20 transition-all duration-300 ${!scrolled ? "brightness-0 invert" : ""}`}
           />
         </a>
 
@@ -66,7 +66,7 @@ const Navbar = () => {
           onClick={() => setMobileOpen(!mobileOpen)}
           className={`md:hidden p-1 transition-colors duration-300 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -75,7 +75,7 @@ const Navbar = () => {
           mobileOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="flex flex-col px-6 py-5 gap-4">
+        <div className="flex flex-col px-6 py-6 gap-5">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -90,7 +90,7 @@ const Navbar = () => {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-primary-foreground text-center py-3 rounded-lg text-sm tracking-wide uppercase mt-1"
+            className="bg-primary text-primary-foreground text-center py-3.5 rounded-lg text-sm tracking-wide uppercase mt-2"
           >
             Falar no WhatsApp
           </a>
