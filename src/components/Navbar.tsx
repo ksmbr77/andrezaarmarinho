@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import logoFull from "@/assets/logo-full.png";
+import { useCart } from "@/contexts/CartContext";
 
 const WHATSAPP_LINK = "https://wa.me/5579996373312?text=Olá Andreza Armarinho! Vim pelo site e gostaria de saber mais sobre os produtos.";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { totalItems, setIsOpen } = useCart();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -48,6 +50,23 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+
+          {/* Cart button */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className={`relative p-2 rounded-lg transition-all duration-300 ${
+              scrolled ? "text-foreground/60 hover:text-foreground" : "text-primary-foreground/80 hover:text-primary-foreground"
+            }`}
+            aria-label="Abrir sacola"
+          >
+            <ShoppingBag size={20} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center animate-in zoom-in">
+                {totalItems}
+              </span>
+            )}
+          </button>
+
           <a
             href={WHATSAPP_LINK}
             target="_blank"
@@ -62,12 +81,27 @@ const Navbar = () => {
           </a>
         </div>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className={`md:hidden p-1 transition-colors duration-300 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile: cart + menu */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={() => setIsOpen(true)}
+            className={`relative p-1 transition-colors duration-300 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+            aria-label="Abrir sacola"
+          >
+            <ShoppingBag size={22} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={`p-1 transition-colors duration-300 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       <div
