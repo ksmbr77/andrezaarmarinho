@@ -50,7 +50,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/20 pt-6 sm:pt-8 flex flex-col items-center gap-4 md:flex-row md:justify-between">
-          <p className="text-primary-foreground/50 text-xs">© 2026 Andreza Armarinho® — Todos os direitos reservados</p>
+          <div className="flex items-center gap-4">
+            <p className="text-primary-foreground/50 text-xs">© 2026 Andreza Armarinho® — Todos os direitos reservados</p>
+            <a href="/admin" className="text-primary-foreground/30 hover:text-primary-foreground/60 text-[10px] transition-colors">Admin</a>
+          </div>
           <a href="https://www.instagram.com/fly.agencyy/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300">
             <span className="text-sm sm:text-base">Desenvolvido por</span>
             <img src={flyLogo} alt="Fly Agency" className="h-10 sm:h-12" />

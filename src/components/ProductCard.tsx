@@ -2,6 +2,22 @@ import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 
+import imgLinhas from "@/assets/products/linhas-fios.jpg";
+import imgCroche from "@/assets/products/croche.jpg";
+import imgAviamentos from "@/assets/products/aviamentos.jpg";
+import imgRendas from "@/assets/products/rendas.jpg";
+import imgTecidos from "@/assets/products/tecidos.jpg";
+import imgEmbalagens from "@/assets/products/embalagens.jpg";
+
+const categoryFallback: Record<string, string> = {
+  "Linhas & Fios": imgLinhas,
+  "Crochê": imgCroche,
+  "Aviamentos": imgAviamentos,
+  "Rendas & Elásticos": imgRendas,
+  "Tecidos": imgTecidos,
+  "Embalagens": imgEmbalagens,
+};
+
 type ProductData = {
   id: string;
   name: string;
@@ -12,6 +28,7 @@ type ProductData = {
 
 const ProductCard = ({ product }: { product: ProductData }) => {
   const { addItem } = useCart();
+  const imageSrc = product.image_url || categoryFallback[product.category] || "/placeholder.svg";
 
   const handleAdd = () => {
     addItem(product);
@@ -21,17 +38,17 @@ const ProductCard = ({ product }: { product: ProductData }) => {
   return (
     <div className="group bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30">
       <div className="aspect-square bg-muted/30 flex items-center justify-center overflow-hidden relative">
-        {product.image_url ? (
-          <img
-            src={product.image_url}
-            alt={product.name}
-            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
-        ) : (
-          <div className="flex flex-col items-center gap-2 text-muted-foreground/40">
-            <ShoppingBag size={32} strokeWidth={1} />
-            <span className="text-[10px]">Sem foto</span>
+        <img
+          src={imageSrc}
+          alt={product.name}
+          className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
+            product.image_url ? "object-contain p-4" : "object-cover opacity-60"
+          }`}
+          loading="lazy"
+        />
+        {!product.image_url && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+            <span className="text-white text-[10px] font-medium">{product.category}</span>
           </div>
         )}
         <button
@@ -44,7 +61,7 @@ const ProductCard = ({ product }: { product: ProductData }) => {
       </div>
       <div className="p-3 sm:p-4">
         <p className="text-[10px] uppercase tracking-[0.15em] text-primary/60 mb-1">{product.category}</p>
-        <h3 className="text-sm font-medium leading-tight line-clamp-2">{product.name}</h3>
+        <h3 className="text-sm font-medium leading-tight line-clamp-2 min-h-[2.5rem]">{product.name}</h3>
         <button
           onClick={handleAdd}
           className="mt-3 w-full text-xs text-primary font-medium py-2 border border-primary/20 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
