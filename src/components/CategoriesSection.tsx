@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Layers, Spline, Scissors, Package, Waves, Grip, Search } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { useFadeIn } from "@/hooks/useFadeIn";
-import { products, categories as categoryList } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 
-const WHATSAPP_LINK = "https://wa.me/5579996373312";
+const CATEGORIES_LIST = ["Todos", "Linhas & Fios", "Crochê", "Aviamentos", "Rendas & Elásticos", "Tecidos", "Embalagens"];
 
 const categoryIcons: Record<string, any> = {
   "Tecidos": Layers,
@@ -15,19 +16,23 @@ const categoryIcons: Record<string, any> = {
   "Rendas & Elásticos": Waves,
 };
 
-const categoryMessages: Record<string, string> = {
-  "Tecidos": "Oii Andreza! 😊 Vi no site que vocês trabalham com *Tecidos* e gostaria de saber mais sobre opções, cores e preços disponíveis. Pode me ajudar?",
-  "Linhas & Fios": "Oii Andreza! 😊 Estou procurando *Linhas e Fios* para um projeto. Quais tipos e cores vocês têm disponíveis? Vi pelo site!",
-  "Aviamentos": "Oii Andreza! 😊 Preciso de *Aviamentos* e vi no site que vocês trabalham com isso. Poderia me mostrar o que tem disponível?",
-  "Embalagens": "Oii Andreza! 😊 Encontrei vocês pelo site e tenho interesse em *Embalagens*. Quais opções vocês oferecem?",
-  "Crochê": "Oii Andreza! 😊 Adoro crochê e vi pelo site que vocês trabalham com materiais para *Crochê*! Quais produtos vocês têm? 🧶",
-  "Rendas & Elásticos": "Oii Andreza! 😊 Estou precisando de *Rendas e Elásticos*. Vi no site e gostaria de saber sobre os modelos e preços disponíveis!",
-};
-
 const CategoriesSection = () => {
   const { ref, visible } = useFadeIn();
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { data: products = [] } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("active", true)
+        .order("sort_order", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+  });
 
   const filteredProducts = products.filter((p) => {
     const matchesCategory = activeCategory === "Todos" || p.category === activeCategory;
@@ -49,6 +54,7 @@ const CategoriesSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-12 sm:mb-16">
           {displayCategories.map((cat, i) => {
             const Icon = categoryIcons[cat];
+            const count = products.filter(p => p.category === cat).length;
             return (
               <button
                 key={cat}
@@ -75,7 +81,10 @@ const CategoriesSection = () => {
                   <h3 className={`text-sm md:text-base font-medium tracking-wide transition-colors duration-300 ${
                     activeCategory === cat ? "text-primary" : "group-hover:text-primary"
                   }`}>{cat}</h3>
-                  <span className={`block mt-3 text-primary text-xs font-medium transition-all duration-300 ${
+                  {count > 0 && (
+                    <span className="block mt-1 text-[10px] text-muted-foreground">{count} produtos</span>
+                  )}
+                  <span className={`block mt-2 text-primary text-xs font-medium transition-all duration-300 ${
                     activeCategory === cat
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0"
@@ -104,7 +113,7 @@ const CategoriesSection = () => {
 
           {/* Category pills */}
           <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
-            {categoryList.map((cat) => (
+            {CATEGORIES_LIST.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
@@ -138,7 +147,6 @@ const CategoriesSection = () => {
             </div>
           )}
 
-          {/* Results count */}
           <div className="mt-6 text-center">
             <p className="text-xs text-muted-foreground/50">
               {filteredProducts.length} {filteredProducts.length === 1 ? "produto" : "produtos"} encontrado{filteredProducts.length !== 1 ? "s" : ""}
