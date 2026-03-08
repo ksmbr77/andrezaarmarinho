@@ -7,6 +7,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AdminProducts from "./pages/AdminProducts";
 
 const queryClient = new QueryClient();
 
