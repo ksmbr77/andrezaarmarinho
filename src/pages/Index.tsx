@@ -28,7 +28,7 @@ const Index = () => {
         document.body.scrollTop = 0;
         setLoading(false);
       }, 400);
-    }, 1500);
+    }, 2800);
     return () => clearTimeout(timer);
   }, []);
 
