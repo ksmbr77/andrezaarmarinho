@@ -1,17 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import MarqueeSection from "@/components/MarqueeSection";
 import CategoriesSection from "@/components/CategoriesSection";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import OffersBanner from "@/components/OffersBanner";
-import InstagramSection from "@/components/InstagramSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import LeadFormSection from "@/components/LeadFormSection";
-import LocationSection from "@/components/LocationSection";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+
+// Lazy load below-fold sections
+const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
+const OffersBanner = lazy(() => import("@/components/OffersBanner"));
+const InstagramSection = lazy(() => import("@/components/InstagramSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const LeadFormSection = lazy(() => import("@/components/LeadFormSection"));
+const LocationSection = lazy(() => import("@/components/LocationSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton"));
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -25,8 +27,8 @@ const Index = () => {
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
         setLoading(false);
-      }, 500);
-    }, 3000);
+      }, 400);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -41,15 +43,19 @@ const Index = () => {
             <HeroSection />
             <MarqueeSection />
             <CategoriesSection />
-            <WhyChooseUs />
-            <OffersBanner />
-            <InstagramSection />
-            <TestimonialsSection />
-            <LeadFormSection />
-            <LocationSection />
+            <Suspense fallback={null}>
+              <WhyChooseUs />
+              <OffersBanner />
+              <InstagramSection />
+              <TestimonialsSection />
+              <LeadFormSection />
+              <LocationSection />
+            </Suspense>
           </main>
-          <Footer />
-          <WhatsAppButton />
+          <Suspense fallback={null}>
+            <Footer />
+            <WhatsAppButton />
+          </Suspense>
         </>
       )}
     </>
