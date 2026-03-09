@@ -7,7 +7,7 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ onExit }: LoadingScreenProps) => {
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-primary flex items-center justify-center transition-all duration-700 ${onExit ? "opacity-0 scale-105" : "opacity-100 scale-100"}`}
+      className={`fixed inset-0 z-[100] bg-primary flex items-center justify-center transition-all duration-500 ${onExit ? "opacity-0 scale-105" : "opacity-100 scale-100"}`}
     >
       <div className="flex flex-col items-center gap-8">
         <img
