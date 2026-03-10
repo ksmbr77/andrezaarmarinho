@@ -57,7 +57,7 @@ const HeroSection = () => {
         >
           <span className="w-8 h-[1px] bg-primary-foreground/30" />
           <p className="text-primary-foreground/50 text-[10px] md:text-[11px] tracking-[0.2em] uppercase">
-            3x Armarinho Destaque &nbsp;·&nbsp; Entregas para todo o Brasil
+            3x Armarinho Destaque &nbsp;·&nbsp; Entregamos para todo o Sergipe
           </p>
           <span className="w-8 h-[1px] bg-primary-foreground/30" />
         </div>
