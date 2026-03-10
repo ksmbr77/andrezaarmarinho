@@ -5,7 +5,7 @@ const highlights = [
   { icon: Award, title: "3x Armarinho Destaque", desc: "Reconhecida como referência em qualidade e variedade pelo terceiro ano consecutivo." },
   { icon: Gem, title: "Produtos de Alta Qualidade", desc: "Trabalhamos apenas com fornecedores selecionados para garantir o melhor para sua produção." },
   { icon: ShieldCheck, title: "Garantia de Satisfação", desc: "Compromisso com a qualidade em cada produto. Sua confiança é nossa prioridade." },
-  { icon: Truck, title: "Entrega Nacional", desc: "Enviamos para todas as regiões do país com segurança e agilidade." },
+  { icon: Truck, title: "Entrega para todo Sergipe", desc: "Enviamos para todas as regiões do estado com segurança e agilidade." },
   { icon: MessageCircle, title: "Atendimento Personalizado", desc: "Resposta ágil via WhatsApp para tirar dúvidas e fechar pedidos sob medida." },
 ];
 
