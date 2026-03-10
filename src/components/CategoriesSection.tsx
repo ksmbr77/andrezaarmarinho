@@ -155,7 +155,7 @@ const CategoriesSection = () => {
 
           {/* Category pills */}
           <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
-            {CATEGORIES_LIST.filter(c => c !== "Tecidos").map((cat) => (
+            {CATEGORIES_LIST.map((cat) => (
               <button
                 key={cat}
                 onClick={() => { setActiveCategory(cat); setVisibleCount(PRODUCTS_PER_PAGE); }}
