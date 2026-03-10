@@ -26,7 +26,7 @@ const categoryData: Record<string, CategoryInfo> = {
   "Crochê": { icon: Grip, image: imgCroche },
   "Aviamentos": { icon: Scissors, image: imgAviamentos },
   "Rendas & Elásticos": { icon: Waves, image: imgRendas },
-  "Tecidos": { icon: Layers, image: imgTecidos, comingSoon: true },
+  "Tecidos": { icon: Layers, image: imgTecidos },
   "Embalagens": { icon: Package, image: imgEmbalagens },
 };
 
