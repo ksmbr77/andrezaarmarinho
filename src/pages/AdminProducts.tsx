@@ -66,7 +66,7 @@ const AdminProducts = () => {
         imageUrl = await uploadImage(imageFile, tempId);
       }
       if (data.id) {
-        const updateData: any = { name: data.name, category: data.category, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
+        const updateData: any = { name: data.name, category: data.category, subcategory: data.subcategory || null, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
         if (imageUrl) updateData.image_url = imageUrl;
         const { error } = await supabase.from("products").update(updateData).eq("id", data.id);
         if (error) throw error;
