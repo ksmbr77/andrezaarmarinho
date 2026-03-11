@@ -1,38 +1,38 @@
-import { useState } from "react";
-import { Layers, Spline, Scissors, Package, Waves, Grip, Search, ChevronDown } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Spline, Scissors, Package, Grip, Search, ChevronDown, Paintbrush, Pen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useFadeIn } from "@/hooks/useFadeIn";
 import ProductCard from "@/components/ProductCard";
 
-import imgLinhas from "@/assets/products/linhas-fios.jpg";
 import imgCroche from "@/assets/products/croche.jpg";
 import imgAviamentos from "@/assets/products/aviamentos.jpg";
-import imgRendas from "@/assets/products/rendas.jpg";
-import imgTecidos from "@/assets/products/tecidos.jpg";
+import imgCosturaBordado from "@/assets/products/costura-bordado.jpg";
+import imgArtesanato from "@/assets/products/artesanato.jpg";
 import imgEmbalagens from "@/assets/products/embalagens.jpg";
+import imgTecidos from "@/assets/products/tecidos.jpg";
 
-const CATEGORIES_LIST = ["Todos", "Linhas & Fios", "Crochê", "Aviamentos", "Rendas & Elásticos", "Tecidos", "Embalagens"];
+const CATEGORIES_LIST = ["Todos", "Crochê", "Aviamentos", "Costura & Bordado", "Artesanato", "Embalagens", "Tecidos"];
 const PRODUCTS_PER_PAGE = 8;
 
 type CategoryInfo = {
   icon: any;
   image: string;
-  comingSoon?: boolean;
 };
 
 const categoryData: Record<string, CategoryInfo> = {
-  "Linhas & Fios": { icon: Spline, image: imgLinhas },
   "Crochê": { icon: Grip, image: imgCroche },
   "Aviamentos": { icon: Scissors, image: imgAviamentos },
-  "Rendas & Elásticos": { icon: Waves, image: imgRendas },
-  "Tecidos": { icon: Layers, image: imgTecidos },
+  "Costura & Bordado": { icon: Pen, image: imgCosturaBordado },
+  "Artesanato": { icon: Paintbrush, image: imgArtesanato },
   "Embalagens": { icon: Package, image: imgEmbalagens },
+  "Tecidos": { icon: Spline, image: imgTecidos },
 };
 
 const CategoriesSection = () => {
   const { ref, visible } = useFadeIn();
   const [activeCategory, setActiveCategory] = useState("Todos");
+  const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleCount, setVisibleCount] = useState(PRODUCTS_PER_PAGE);
 
@@ -49,17 +49,32 @@ const CategoriesSection = () => {
     },
   });
 
+  // Get subcategories for the active category
+  const subcategories = useMemo(() => {
+    if (activeCategory === "Todos") return [];
+    const subs = new Set<string>();
+    products.forEach(p => {
+      if (p.category === activeCategory && p.subcategory) {
+        subs.add(p.subcategory);
+      }
+    });
+    return Array.from(subs).sort();
+  }, [activeCategory, products]);
+
   const filteredProducts = products.filter((p) => {
     const matchesCategory = activeCategory === "Todos" || p.category === activeCategory;
+    const matchesSubcategory = !activeSubcategory || p.subcategory === activeSubcategory;
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesSubcategory && matchesSearch;
   });
 
   const displayedProducts = filteredProducts.slice(0, visibleCount);
   const hasMore = visibleCount < filteredProducts.length;
 
   const handleCategoryClick = (cat: string) => {
-    setActiveCategory(activeCategory === cat ? "Todos" : cat);
+    const newCat = activeCategory === cat ? "Todos" : cat;
+    setActiveCategory(newCat);
+    setActiveSubcategory(null);
     setSearchTerm("");
     setVisibleCount(PRODUCTS_PER_PAGE);
   };
@@ -85,17 +100,14 @@ const CategoriesSection = () => {
             return (
               <button
                 key={cat}
-                onClick={() => !info.comingSoon && handleCategoryClick(cat)}
+                onClick={() => handleCategoryClick(cat)}
                 className={`group relative rounded-xl overflow-hidden transition-all duration-500 border-b-2 ${
-                  info.comingSoon
-                    ? "opacity-70 cursor-default border border-border/50 border-b-transparent"
-                    : isActive
-                      ? "border border-primary/50 border-b-primary shadow-lg shadow-primary/10"
-                      : "border border-border hover:border-primary/50 border-b-transparent hover:border-b-primary/60 hover:shadow-xl hover:shadow-primary/10"
+                  isActive
+                    ? "border border-primary/50 border-b-primary shadow-lg shadow-primary/10"
+                    : "border border-border hover:border-primary/50 border-b-transparent hover:border-b-primary/60 hover:shadow-xl hover:shadow-primary/10"
                 }`}
                 style={{ transitionDelay: visible ? `${i * 80}ms` : "0ms" }}
               >
-                {/* Background image */}
                 <div className="absolute inset-0">
                   <img src={info.image} alt={cat} className="w-full h-full object-cover" />
                   <div className={`absolute inset-0 transition-all duration-500 ${
@@ -116,23 +128,16 @@ const CategoriesSection = () => {
                   <h3 className={`text-sm md:text-base font-medium tracking-wide transition-colors duration-300 ${
                     isActive ? "text-primary" : "text-white"
                   }`}>{cat}</h3>
-
-                  {info.comingSoon ? (
-                    <span className="block mt-2 text-[11px] text-amber-300 font-medium tracking-wide">Em breve</span>
-                  ) : (
-                    <>
-                      {count > 0 && (
-                        <span className="block mt-1 text-[10px] text-white/60">{count} produtos</span>
-                      )}
-                      <span className={`block mt-2 text-xs font-medium transition-all duration-300 ${
-                        isActive
-                          ? "text-primary opacity-100 translate-y-0"
-                          : "text-white/80 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0"
-                      }`}>
-                        {isActive ? "✓ Selecionado" : "Ver produtos →"}
-                      </span>
-                    </>
+                  {count > 0 && (
+                    <span className="block mt-1 text-[10px] text-white/60">{count} produtos</span>
                   )}
+                  <span className={`block mt-2 text-xs font-medium transition-all duration-300 ${
+                    isActive
+                      ? "text-primary opacity-100 translate-y-0"
+                      : "text-white/80 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0"
+                  }`}>
+                    {isActive ? "✓ Selecionado" : "Ver produtos →"}
+                  </span>
                 </div>
               </button>
             );
@@ -154,11 +159,11 @@ const CategoriesSection = () => {
           </div>
 
           {/* Category pills */}
-          <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+          <div className="flex flex-wrap gap-2 mb-4">
             {CATEGORIES_LIST.map((cat) => (
               <button
                 key={cat}
-                onClick={() => { setActiveCategory(cat); setVisibleCount(PRODUCTS_PER_PAGE); }}
+                onClick={() => { setActiveCategory(cat); setActiveSubcategory(null); setVisibleCount(PRODUCTS_PER_PAGE); }}
                 className={`px-4 py-2 rounded-lg text-xs font-medium border transition-all duration-300 ${
                   activeCategory === cat
                     ? "bg-primary text-primary-foreground border-primary"
@@ -169,6 +174,38 @@ const CategoriesSection = () => {
               </button>
             ))}
           </div>
+
+          {/* Subcategory pills */}
+          {subcategories.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-6 pl-1">
+              <button
+                onClick={() => { setActiveSubcategory(null); setVisibleCount(PRODUCTS_PER_PAGE); }}
+                className={`px-3 py-1.5 rounded-md text-[11px] font-medium border transition-all duration-200 ${
+                  !activeSubcategory
+                    ? "bg-primary/15 text-primary border-primary/30"
+                    : "border-border/30 text-muted-foreground/70 hover:border-primary/20 hover:text-foreground"
+                }`}
+              >
+                Todas
+              </button>
+              {subcategories.map((sub) => {
+                const subCount = products.filter(p => p.category === activeCategory && p.subcategory === sub).length;
+                return (
+                  <button
+                    key={sub}
+                    onClick={() => { setActiveSubcategory(activeSubcategory === sub ? null : sub); setVisibleCount(PRODUCTS_PER_PAGE); }}
+                    className={`px-3 py-1.5 rounded-md text-[11px] font-medium border transition-all duration-200 ${
+                      activeSubcategory === sub
+                        ? "bg-primary/15 text-primary border-primary/30"
+                        : "border-border/30 text-muted-foreground/70 hover:border-primary/20 hover:text-foreground"
+                    }`}
+                  >
+                    {sub} ({subCount})
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {/* Products grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
@@ -181,7 +218,7 @@ const CategoriesSection = () => {
             <div className="text-center py-16">
               <p className="text-muted-foreground text-sm">Nenhum produto encontrado.</p>
               <button
-                onClick={() => { setActiveCategory("Todos"); setSearchTerm(""); setVisibleCount(PRODUCTS_PER_PAGE); }}
+                onClick={() => { setActiveCategory("Todos"); setActiveSubcategory(null); setSearchTerm(""); setVisibleCount(PRODUCTS_PER_PAGE); }}
                 className="mt-3 text-primary text-sm hover:underline"
               >
                 Limpar filtros

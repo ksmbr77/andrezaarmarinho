@@ -5,7 +5,16 @@ import { Plus, Trash2, Edit2, Upload, X, Save, Eye, EyeOff, ImagePlus } from "lu
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
-const CATEGORIES = ["Linhas & Fios", "Crochê", "Aviamentos", "Rendas & Elásticos", "Tecidos", "Embalagens"];
+const CATEGORIES = ["Crochê", "Aviamentos", "Costura & Bordado", "Artesanato", "Embalagens", "Tecidos"];
+
+const SUBCATEGORIES: Record<string, string[]> = {
+  "Crochê": ["Agulhas", "Linhas", "Barbantes", "Fios", "Acessórios"],
+  "Aviamentos": ["Alfinetes", "Alças", "Argolas", "Botões", "Bojos", "Bordados", "Cadarços", "Canetas", "Colchetes", "Cordões", "Elásticos", "Entretelas", "Etiquetas", "Fitas", "Franjas", "Galões", "Gripir", "Ilhós", "Presilhas", "Rendas", "Tesouras", "Velcros", "Zíperes", "Fios", "Outros"],
+  "Costura & Bordado": ["Agulhas", "Bobinas", "Linhas", "Óleos", "Viés", "Acessórios"],
+  "Artesanato": ["Apliques", "Chatons", "Colas", "Correntes", "Meias", "Pérolas", "Pompons", "Strass"],
+  "Embalagens": ["Sacos", "Envelopes", "Bobinas", "Outros"],
+  "Tecidos": ["TNTs", "Feltros", "Outros"],
+};
 
 type Product = {
   id: string;
@@ -25,7 +34,7 @@ const AdminProducts = () => {
   const queryClient = useQueryClient();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: "", category: CATEGORIES[0], whatsapp_msg: "", active: true, sort_order: 0 });
+  const [form, setForm] = useState({ name: "", category: CATEGORIES[0], subcategory: "", whatsapp_msg: "", active: true, sort_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [filterCategory, setFilterCategory] = useState("Todos");
   const [bulkUploading, setBulkUploading] = useState(false);
@@ -57,12 +66,12 @@ const AdminProducts = () => {
         imageUrl = await uploadImage(imageFile, tempId);
       }
       if (data.id) {
-        const updateData: any = { name: data.name, category: data.category, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
+        const updateData: any = { name: data.name, category: data.category, subcategory: (data as any).subcategory || null, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
         if (imageUrl) updateData.image_url = imageUrl;
         const { error } = await supabase.from("products").update(updateData).eq("id", data.id);
         if (error) throw error;
       } else {
-        const insertData: any = { name: data.name, category: data.category, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
+        const insertData: any = { name: data.name, category: data.category, subcategory: (data as any).subcategory || null, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
         if (imageUrl) insertData.image_url = imageUrl;
         const { error } = await supabase.from("products").insert(insertData);
         if (error) throw error;
@@ -163,14 +172,14 @@ const AdminProducts = () => {
   }, [products, queryClient]);
 
   const resetForm = () => {
-    setForm({ name: "", category: CATEGORIES[0], whatsapp_msg: "", active: true, sort_order: 0 });
+    setForm({ name: "", category: CATEGORIES[0], subcategory: "", whatsapp_msg: "", active: true, sort_order: 0 });
     setImageFile(null);
     setEditingId(null);
     setShowForm(false);
   };
 
   const startEdit = (p: Product) => {
-    setForm({ name: p.name, category: p.category, whatsapp_msg: p.whatsapp_msg || "", active: p.active, sort_order: p.sort_order });
+    setForm({ name: p.name, category: p.category, subcategory: (p as any).subcategory || "", whatsapp_msg: p.whatsapp_msg || "", active: p.active, sort_order: p.sort_order });
     setEditingId(p.id);
     setShowForm(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -253,8 +262,15 @@ const AdminProducts = () => {
                 </div>
                 <div>
                   <label className="text-sm text-muted-foreground mb-1 block">Categoria *</label>
-                  <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))} className="w-full bg-background border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors">
+                  <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value, subcategory: "" }))} className="w-full bg-background border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors">
                     {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-sm text-muted-foreground mb-1 block">Subcategoria</label>
+                  <select value={form.subcategory} onChange={e => setForm(f => ({ ...f, subcategory: e.target.value }))} className="w-full bg-background border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors">
+                    <option value="">— Nenhuma —</option>
+                    {(SUBCATEGORIES[form.category] || []).map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
               </div>
