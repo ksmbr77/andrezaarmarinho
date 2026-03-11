@@ -23,7 +23,7 @@ type CategoryInfo = {
 const categoryData: Record<string, CategoryInfo> = {
   "Crochê": { icon: Grip, image: imgCroche },
   "Aviamentos": { icon: Scissors, image: imgAviamentos },
-  "Costura & Bordado": { icon: Needle, image: imgCosturaBordado },
+  "Costura & Bordado": { icon: Pen, image: imgCosturaBordado },
   "Artesanato": { icon: Paintbrush, image: imgArtesanato },
   "Embalagens": { icon: Package, image: imgEmbalagens },
   "Tecidos": { icon: Spline, image: imgTecidos },
