@@ -172,7 +172,7 @@ const AdminProducts = () => {
   }, [products, queryClient]);
 
   const resetForm = () => {
-    setForm({ name: "", category: CATEGORIES[0], whatsapp_msg: "", active: true, sort_order: 0 });
+    setForm({ name: "", category: CATEGORIES[0], subcategory: "", whatsapp_msg: "", active: true, sort_order: 0 });
     setImageFile(null);
     setEditingId(null);
     setShowForm(false);
