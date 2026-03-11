@@ -71,7 +71,7 @@ const AdminProducts = () => {
         const { error } = await supabase.from("products").update(updateData).eq("id", data.id);
         if (error) throw error;
       } else {
-        const insertData: any = { name: data.name, category: data.category, subcategory: data.subcategory || null, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
+        const insertData: any = { name: data.name, category: data.category, subcategory: (data as any).subcategory || null, whatsapp_msg: data.whatsapp_msg, active: data.active, sort_order: data.sort_order };
         if (imageUrl) insertData.image_url = imageUrl;
         const { error } = await supabase.from("products").insert(insertData);
         if (error) throw error;
