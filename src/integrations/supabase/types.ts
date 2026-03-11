@@ -23,6 +23,7 @@ export type Database = {
           image_url: string | null
           name: string
           sort_order: number
+          subcategory: string | null
           updated_at: string
           whatsapp_msg: string | null
         }
@@ -34,6 +35,7 @@ export type Database = {
           image_url?: string | null
           name: string
           sort_order?: number
+          subcategory?: string | null
           updated_at?: string
           whatsapp_msg?: string | null
         }
@@ -45,6 +47,7 @@ export type Database = {
           image_url?: string | null
           name?: string
           sort_order?: number
+          subcategory?: string | null
           updated_at?: string
           whatsapp_msg?: string | null
         }
