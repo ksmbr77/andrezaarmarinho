@@ -34,7 +34,7 @@ const AdminProducts = () => {
   const queryClient = useQueryClient();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: "", category: CATEGORIES[0], whatsapp_msg: "", active: true, sort_order: 0 });
+  const [form, setForm] = useState({ name: "", category: CATEGORIES[0], subcategory: "", whatsapp_msg: "", active: true, sort_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [filterCategory, setFilterCategory] = useState("Todos");
   const [bulkUploading, setBulkUploading] = useState(false);
