@@ -179,7 +179,7 @@ const AdminProducts = () => {
   };
 
   const startEdit = (p: Product) => {
-    setForm({ name: p.name, category: p.category, whatsapp_msg: p.whatsapp_msg || "", active: p.active, sort_order: p.sort_order });
+    setForm({ name: p.name, category: p.category, subcategory: (p as any).subcategory || "", whatsapp_msg: p.whatsapp_msg || "", active: p.active, sort_order: p.sort_order });
     setEditingId(p.id);
     setShowForm(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
