@@ -273,10 +273,6 @@ const AdminProducts = () => {
                     {(SUBCATEGORIES[form.category] || []).map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
-                  <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))} className="w-full bg-background border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors">
-                    {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
-                  </select>
-                </div>
               </div>
               <div>
                 <label className="text-sm text-muted-foreground mb-1 block">Imagem do produto</label>
