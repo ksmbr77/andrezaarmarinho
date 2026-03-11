@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Spline, Scissors, Package, Grip, Search, ChevronDown, Paintbrush, Needle } from "lucide-react";
+import { Spline, Scissors, Package, Grip, Search, ChevronDown, Paintbrush, Pen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useFadeIn } from "@/hooks/useFadeIn";
