@@ -2,18 +2,18 @@ import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 
-import imgLinhas from "@/assets/products/linhas-fios.jpg";
 import imgCroche from "@/assets/products/croche.jpg";
 import imgAviamentos from "@/assets/products/aviamentos.jpg";
-import imgRendas from "@/assets/products/rendas.jpg";
+import imgCosturaBordado from "@/assets/products/costura-bordado.jpg";
+import imgArtesanato from "@/assets/products/artesanato.jpg";
 import imgTecidos from "@/assets/products/tecidos.jpg";
 import imgEmbalagens from "@/assets/products/embalagens.jpg";
 
 const categoryFallback: Record<string, string> = {
-  "Linhas & Fios": imgLinhas,
   "Crochê": imgCroche,
   "Aviamentos": imgAviamentos,
-  "Rendas & Elásticos": imgRendas,
+  "Costura & Bordado": imgCosturaBordado,
+  "Artesanato": imgArtesanato,
   "Tecidos": imgTecidos,
   "Embalagens": imgEmbalagens,
 };

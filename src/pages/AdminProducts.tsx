@@ -5,7 +5,16 @@ import { Plus, Trash2, Edit2, Upload, X, Save, Eye, EyeOff, ImagePlus } from "lu
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
-const CATEGORIES = ["Linhas & Fios", "Crochê", "Aviamentos", "Rendas & Elásticos", "Tecidos", "Embalagens"];
+const CATEGORIES = ["Crochê", "Aviamentos", "Costura & Bordado", "Artesanato", "Embalagens", "Tecidos"];
+
+const SUBCATEGORIES: Record<string, string[]> = {
+  "Crochê": ["Agulhas", "Linhas", "Barbantes", "Fios", "Acessórios"],
+  "Aviamentos": ["Alfinetes", "Alças", "Argolas", "Botões", "Bojos", "Bordados", "Cadarços", "Canetas", "Colchetes", "Cordões", "Elásticos", "Entretelas", "Etiquetas", "Fitas", "Franjas", "Galões", "Gripir", "Ilhós", "Presilhas", "Rendas", "Tesouras", "Velcros", "Zíperes", "Fios", "Outros"],
+  "Costura & Bordado": ["Agulhas", "Bobinas", "Linhas", "Óleos", "Viés", "Acessórios"],
+  "Artesanato": ["Apliques", "Chatons", "Colas", "Correntes", "Meias", "Pérolas", "Pompons", "Strass"],
+  "Embalagens": ["Sacos", "Envelopes", "Bobinas", "Outros"],
+  "Tecidos": ["TNTs", "Feltros", "Outros"],
+};
 
 type Product = {
   id: string;
