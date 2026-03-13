@@ -37,6 +37,7 @@ const AdminProducts = () => {
   const [form, setForm] = useState({ name: "", category: CATEGORIES[0], subcategory: "", whatsapp_msg: "", active: true, sort_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [filterCategory, setFilterCategory] = useState("Todos");
+  const [searchQuery, setSearchQuery] = useState("");
   const [bulkUploading, setBulkUploading] = useState(false);
   const [bulkProgress, setBulkProgress] = useState({ done: 0, total: 0, matched: 0 });
 
