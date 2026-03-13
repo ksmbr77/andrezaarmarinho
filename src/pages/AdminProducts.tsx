@@ -192,7 +192,9 @@ const AdminProducts = () => {
     saveMutation.mutate({ id: editingId || undefined, ...form, whatsapp_msg: msg });
   };
 
-  const filtered = filterCategory === "Todos" ? products : products.filter(p => p.category === filterCategory);
+  const filtered = products
+    .filter(p => filterCategory === "Todos" || p.category === filterCategory)
+    .filter(p => !searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div className="min-h-screen bg-background">
