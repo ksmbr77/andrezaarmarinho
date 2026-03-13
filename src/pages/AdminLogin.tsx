@@ -107,13 +107,6 @@ const AdminLogin = () => {
           {loading ? "Aguarde..." : isSignup ? "Criar Conta" : "Entrar"}
         </button>
 
-        <button
-          type="button"
-          onClick={() => setIsSignup(!isSignup)}
-          className="w-full text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition"
-        >
-          {isSignup ? "Já tenho conta → Fazer login" : "Primeira vez? Criar conta"}
-        </button>
       </form>
     </div>
   );
