@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Trash2, Edit2, Upload, X, Save, Eye, EyeOff, ImagePlus } from "lucide-react";
+import { Plus, Trash2, Edit2, Upload, X, Save, Eye, EyeOff, ImagePlus, Search } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
