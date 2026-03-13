@@ -85,7 +85,7 @@ const AdminLogin = () => {
           disabled={loading}
           className="w-full py-3 rounded-lg bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-semibold hover:opacity-90 disabled:opacity-50 transition"
         >
-          {loading ? "Aguarde..." : isSignup ? "Criar Conta" : "Entrar"}
+          {loading ? "Aguarde..." : "Entrar"}
         </button>
 
       </form>

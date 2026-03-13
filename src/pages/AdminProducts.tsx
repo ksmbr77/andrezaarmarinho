@@ -312,6 +312,18 @@ const AdminProducts = () => {
           </div>
         )}
 
+        {/* Search */}
+        <div className="relative mb-6">
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Buscar produto por nome..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-2.5 bg-background border border-border rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+          />
+        </div>
+
         {/* Filter */}
         <div className="flex flex-wrap gap-2 mb-6">
           {["Todos", ...CATEGORIES].map(c => (
