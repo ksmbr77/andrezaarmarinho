@@ -42,7 +42,7 @@ const AdminLogin = () => {
             Painel Administrativo
           </h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))]">
-            {isSignup ? "Criar conta de administrador" : "Faça login para acessar"}
+            Faça login para acessar
           </p>
         </div>
 
