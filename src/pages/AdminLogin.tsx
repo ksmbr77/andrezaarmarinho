@@ -16,33 +16,14 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (isSignup) {
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) {
-        toast.error(error.message);
-        setLoading(false);
-        return;
-      }
-      toast.success("Conta criada! Fazendo login...");
-      // Auto-login after signup since auto-confirm is on
-      const { error: loginError } = await supabase.auth.signInWithPassword({ email, password });
-      if (loginError) {
-        toast.error("Conta criada, mas erro ao logar. Tente fazer login.");
-        setIsSignup(false);
-        setLoading(false);
-        return;
-      }
-      navigate("/admin");
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        toast.error("Credenciais inválidas. Tente novamente.");
-        setLoading(false);
-        return;
-      }
-      toast.success("Login realizado com sucesso!");
-      navigate("/admin");
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      toast.error("Credenciais inválidas. Tente novamente.");
+      setLoading(false);
+      return;
     }
+    toast.success("Login realizado com sucesso!");
+    navigate("/admin");
 
     setLoading(false);
   };
