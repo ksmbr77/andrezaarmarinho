@@ -9,40 +9,21 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [isSignup, setIsSignup] = useState(false);
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    if (isSignup) {
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) {
-        toast.error(error.message);
-        setLoading(false);
-        return;
-      }
-      toast.success("Conta criada! Fazendo login...");
-      // Auto-login after signup since auto-confirm is on
-      const { error: loginError } = await supabase.auth.signInWithPassword({ email, password });
-      if (loginError) {
-        toast.error("Conta criada, mas erro ao logar. Tente fazer login.");
-        setIsSignup(false);
-        setLoading(false);
-        return;
-      }
-      navigate("/admin");
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        toast.error("Credenciais inválidas. Tente novamente.");
-        setLoading(false);
-        return;
-      }
-      toast.success("Login realizado com sucesso!");
-      navigate("/admin");
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      toast.error("Credenciais inválidas. Tente novamente.");
+      setLoading(false);
+      return;
     }
+    toast.success("Login realizado com sucesso!");
+    navigate("/admin");
 
     setLoading(false);
   };
@@ -61,7 +42,7 @@ const AdminLogin = () => {
             Painel Administrativo
           </h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))]">
-            {isSignup ? "Criar conta de administrador" : "Faça login para acessar"}
+            Faça login para acessar
           </p>
         </div>
 
@@ -104,16 +85,9 @@ const AdminLogin = () => {
           disabled={loading}
           className="w-full py-3 rounded-lg bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-semibold hover:opacity-90 disabled:opacity-50 transition"
         >
-          {loading ? "Aguarde..." : isSignup ? "Criar Conta" : "Entrar"}
+          {loading ? "Aguarde..." : "Entrar"}
         </button>
 
-        <button
-          type="button"
-          onClick={() => setIsSignup(!isSignup)}
-          className="w-full text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition"
-        >
-          {isSignup ? "Já tenho conta → Fazer login" : "Primeira vez? Criar conta"}
-        </button>
       </form>
     </div>
   );

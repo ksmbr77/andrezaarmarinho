@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Trash2, Edit2, Upload, X, Save, Eye, EyeOff, ImagePlus } from "lucide-react";
+import { Plus, Trash2, Edit2, Upload, X, Save, Eye, EyeOff, ImagePlus, Search } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
@@ -37,6 +37,7 @@ const AdminProducts = () => {
   const [form, setForm] = useState({ name: "", category: CATEGORIES[0], subcategory: "", whatsapp_msg: "", active: true, sort_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [filterCategory, setFilterCategory] = useState("Todos");
+  const [searchQuery, setSearchQuery] = useState("");
   const [bulkUploading, setBulkUploading] = useState(false);
   const [bulkProgress, setBulkProgress] = useState({ done: 0, total: 0, matched: 0 });
 
@@ -191,7 +192,9 @@ const AdminProducts = () => {
     saveMutation.mutate({ id: editingId || undefined, ...form, whatsapp_msg: msg });
   };
 
-  const filtered = filterCategory === "Todos" ? products : products.filter(p => p.category === filterCategory);
+  const filtered = products
+    .filter(p => filterCategory === "Todos" || p.category === filterCategory)
+    .filter(p => !searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div className="min-h-screen bg-background">
@@ -308,6 +311,18 @@ const AdminProducts = () => {
             </form>
           </div>
         )}
+
+        {/* Search */}
+        <div className="relative mb-6">
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Buscar produto por nome..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-2.5 bg-background border border-border rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+          />
+        </div>
 
         {/* Filter */}
         <div className="flex flex-wrap gap-2 mb-6">
