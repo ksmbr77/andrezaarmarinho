@@ -61,10 +61,36 @@ const CategoriesSection = () => {
     return Array.from(subs).sort();
   }, [activeCategory, products]);
 
+  const fuzzyMatch = (text: string, query: string): boolean => {
+    if (!query) return true;
+    const t = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const q = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    // exact substring
+    if (t.includes(q)) return true;
+    // word-level match
+    const words = q.split(/\s+/);
+    if (words.every(w => t.includes(w))) return true;
+    // simple typo tolerance: allow 1 char difference per word
+    const tWords = t.split(/\s+/);
+    return words.every(qw =>
+      tWords.some(tw => {
+        if (tw.includes(qw) || qw.includes(tw)) return true;
+        if (Math.abs(tw.length - qw.length) > 2) return false;
+        let dist = 0;
+        const len = Math.max(tw.length, qw.length);
+        for (let i = 0; i < len; i++) {
+          if (tw[i] !== qw[i]) dist++;
+          if (dist > 2) return false;
+        }
+        return true;
+      })
+    );
+  };
+
   const filteredProducts = products.filter((p) => {
     const matchesCategory = activeCategory === "Todos" || p.category === activeCategory;
     const matchesSubcategory = !activeSubcategory || p.subcategory === activeSubcategory;
-    const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = fuzzyMatch(p.name, searchTerm);
     return matchesCategory && matchesSubcategory && matchesSearch;
   });
 
