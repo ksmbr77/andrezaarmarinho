@@ -20,13 +20,24 @@ const Index = () => {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
+    // Force scroll to top immediately on mount (bypass smooth scroll)
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     const timer = setTimeout(() => {
       setExiting(true);
       setTimeout(() => {
+        document.documentElement.style.scrollBehavior = 'auto';
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
         setLoading(false);
+        // Restore smooth scroll after a tick
+        requestAnimationFrame(() => {
+          document.documentElement.style.scrollBehavior = '';
+        });
       }, 400);
     }, 2800);
     return () => clearTimeout(timer);
