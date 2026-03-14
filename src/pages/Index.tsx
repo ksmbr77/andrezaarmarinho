@@ -29,19 +29,30 @@ const Index = () => {
     const timer = setTimeout(() => {
       setExiting(true);
       setTimeout(() => {
-        document.documentElement.style.scrollBehavior = 'auto';
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
         setLoading(false);
-        // Restore smooth scroll after a tick
-        requestAnimationFrame(() => {
-          document.documentElement.style.scrollBehavior = '';
-        });
       }, 400);
     }, 2800);
     return () => clearTimeout(timer);
   }, []);
+
+  // Reset scroll AFTER content renders (loading becomes false)
+  useEffect(() => {
+    if (!loading) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      // Double-check after a frame (for lazy-loaded content)
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        requestAnimationFrame(() => {
+          document.documentElement.style.scrollBehavior = '';
+        });
+      });
+    }
+  }, [loading]);
 
   return (
     <>
