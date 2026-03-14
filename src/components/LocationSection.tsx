@@ -80,8 +80,10 @@ const LocationSection = () => {
                 <div>
                   <h3 className="text-sm font-medium mb-1.5">Horário</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Seg a Sex: 8h às 18h<br/>
-                    Sábado: 8h às 13h
+                    Seg: 7h30 às 17h<br/>
+                    Ter a Qui: 8h às 17h30<br/>
+                    Sex: 8h às 17h<br/>
+                    Sáb: 8h às 12h
                   </p>
                 </div>
               </div>
