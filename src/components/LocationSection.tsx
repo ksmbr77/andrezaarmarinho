@@ -69,7 +69,7 @@ const LocationSection = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-medium mb-1.5">Endereço</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">Av. Luís Alves de Oliveira Filho, 404-484<br/>Tobias Barreto - SE, 49300-000</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Av. Luís Alves de Oliveira Filho, Quadra B, Box 19<br/>Tobias Barreto - SE, 49300-000</p>
                 </div>
               </div>
 
@@ -80,8 +80,10 @@ const LocationSection = () => {
                 <div>
                   <h3 className="text-sm font-medium mb-1.5">Horário</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Seg a Sex: 8h às 18h<br/>
-                    Sábado: 8h às 13h
+                    Seg: 7h30 às 17h<br/>
+                    Ter a Qui: 8h às 17h30<br/>
+                    Sex: 8h às 17h<br/>
+                    Sáb: 8h às 12h
                   </p>
                 </div>
               </div>
